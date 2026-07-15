@@ -3,189 +3,772 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>香港居屋家庭问卷 G0+P1–P5</title>
+<title>白居二家庭简问卷（2025）</title>
 <style>
-:root { --bg:#0f1419; --card:#1a2332; --line:#2d3a4d; --text:#e7eef8; --muted:#9fb0c3; --acc:#3b82f6; --ok:#22c55e; }
-* { box-sizing:border-box; }
-body { margin:0; font-family: "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif; background:linear-gradient(180deg,#0b1220,#121a24 40%,#0f1419); color:var(--text); line-height:1.5; }
-header { padding:20px 16px 8px; max-width:920px; margin:0 auto; }
-header h1 { font-size:1.35rem; margin:0 0 8px; }
-header p { color:var(--muted); margin:0 0 8px; font-size:.95rem; }
-.wrap { max-width:920px; margin:0 auto; padding:0 16px 48px; }
-.tabs { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0; position:sticky; top:0; background:rgba(15,20,25,.92); backdrop-filter:blur(8px); padding:10px 0; z-index:5; border-bottom:1px solid var(--line); }
-.tab { background:var(--card); color:var(--text); border:1px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer; }
-.tab.active { background:var(--acc); border-color:var(--acc); }
-.panel { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 16px 24px; }
-.panel h2 { margin:0 0 8px; font-size:1.15rem; }
-.note { color:var(--muted); font-size:.9rem; margin:0 0 16px; }
-.field { margin:0 0 14px; }
-.lab { display:block; font-size:.92rem; margin-bottom:6px; }
-.fid { color:var(--acc); font-family:ui-monospace,monospace; font-size:.8rem; margin-right:4px; }
-input, select, textarea { width:100%; background:#0e1622; color:var(--text); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; }
-textarea { resize:vertical; }
-.actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:18px; }
-.btn { background:var(--acc); color:white; border:0; border-radius:10px; padding:10px 16px; font:inherit; cursor:pointer; }
-.btn.secondary { background:transparent; border:1px solid var(--line); color:var(--text); }
-.btn.ok { background:var(--ok); }
-.saved { color:var(--ok); font-size:.85rem; }
-.toolbar { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0 20px; }
-.progress { color:var(--muted); font-size:.85rem; }
-footer { max-width:920px; margin:0 auto; padding:0 16px 40px; color:var(--muted); font-size:.85rem; }
-
-.cloud-box { background:#10261a; border:1px solid #166534; border-radius:12px; padding:14px; margin:0 0 16px; }
-.cloud-title { color:#86efac; font-weight:600; margin-bottom:8px; }
-.cloud-row { display:flex; gap:8px; flex-wrap:wrap; }
-.cloud-row input { flex:1; min-width:220px; }
-.cloud-hint { color:var(--muted); font-size:.85rem; margin:8px 0 0; }
-.cloud-err { background:#3f1d1d; border:1px solid #7f1d1d; color:#fecaca; border-radius:12px; padding:12px; margin:0 0 16px; font-size:.9rem; }
-.btn:disabled { opacity:.55; cursor:wait; }
-
-
-.skip-box { background:#1e293b; border:1px solid #334155; border-radius:12px; padding:12px 14px; margin:0 0 16px; font-size:.9rem; color:var(--muted); }
-.skip-box strong { color:#93c5fd; display:block; margin-bottom:6px; }
-.skip-box ul { margin:6px 0 0 1.1rem; padding:0; }
-.skip-box li { margin:4px 0; }
-
-.tip-btn { display:inline-flex; align-items:center; justify-content:center; width:1.1rem; height:1.1rem; margin-left:6px; border-radius:999px; border:1px solid #475569; color:#93c5fd; font-size:.7rem; font-weight:700; cursor:help; vertical-align:middle; position:relative; background:#0f172a; }
-.tip-btn:hover, .tip-btn:focus { border-color:#60a5fa; color:#fff; outline:none; }
-.tip-pop { display:none; position:absolute; left:50%; transform:translateX(-50%); bottom:calc(100% + 8px); width:min(280px,70vw); background:#0b1220; color:#e2e8f0; border:1px solid #334155; border-radius:10px; padding:10px; font-size:.8rem; font-weight:400; line-height:1.45; z-index:20; box-shadow:0 8px 24px rgba(0,0,0,.35); white-space:normal; text-align:left; }
-.tip-btn:hover .tip-pop, .tip-btn:focus .tip-pop { display:block; }
-.glossary-box { background:#111827; border:1px solid #334155; border-radius:12px; padding:12px 14px; margin:0 0 14px; font-size:.88rem; color:var(--muted); }
-.glossary-box summary { cursor:pointer; color:#93c5fd; font-weight:600; }
-.glossary-box dl { margin:10px 0 0; }
-.glossary-box dt { color:#e2e8f0; margin-top:8px; font-weight:600; }
-.glossary-box dd { margin:2px 0 0; }
-.cloud-status { font-size:.85rem; color:#86efac; margin-left:4px; }
-.cloud-status.warn { color:#fbbf24; }
-.cloud-status.err { color:#fca5a5; }
+:root {
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --line: #d8e0ea;
+  --text: #1a2332;
+  --muted: #5b6b7c;
+  --acc: #2563eb;
+  --acc-soft: #dbeafe;
+  --ok: #15803d;
+  --ok-soft: #dcfce7;
+  --warn: #b45309;
+  --warn-soft: #fef3c7;
+  --ro: #f1f5f9;
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 28%, #f8fafc 100%);
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 16px;
+}
+header {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 22px 16px 8px;
+}
+header h1 {
+  font-size: 1.45rem;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+header p { margin: 0 0 6px; color: var(--muted); font-size: .95rem; }
+.badge {
+  display: inline-block;
+  background: var(--acc-soft);
+  color: #1d4ed8;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: .82rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 56px; }
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(244, 247, 251, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0 12px;
+  margin: 0 0 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.btn {
+  appearance: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 48px;
+  background: var(--acc);
+  color: #fff;
+}
+.btn:disabled { opacity: .55; cursor: wait; }
+.btn.secondary {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.btn.ok { background: var(--ok); }
+.progress, .cloud-status {
+  font-size: .85rem;
+  color: var(--muted);
+  width: 100%;
+}
+.cloud-status.ok { color: var(--ok); }
+.cloud-status.warn { color: var(--warn); }
+.cloud-status.err { color: #b91c1c; }
+.cloud-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.cloud-row input { flex: 1; min-width: 200px; }
+.cloud-box {
+  background: var(--ok-soft);
+  border: 1px solid #86efac;
+  border-radius: var(--radius);
+  padding: 14px;
+  margin: 0 0 14px;
+}
+.cloud-box h3 { margin: 0 0 8px; font-size: 1rem; color: var(--ok); }
+.cloud-err {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  border-radius: var(--radius);
+  padding: 12px;
+  margin: 0 0 14px;
+  font-size: .92rem;
+}
+.section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 16px 20px;
+  margin: 0 0 14px;
+}
+.section h2 {
+  margin: 0 0 6px;
+  font-size: 1.12rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section .note {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--acc-soft);
+  color: #1d4ed8;
+}
+.tag.ro { background: #e2e8f0; color: #334155; }
+.field { margin: 0 0 14px; }
+.lab {
+  display: block;
+  font-size: .93rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.hint {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: .82rem;
+  margin-top: 2px;
+}
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 12px;
+  font: inherit;
+  background: #fff;
+  color: var(--text);
+  min-height: 48px;
+}
+textarea { min-height: 88px; resize: vertical; }
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #93c5fd;
+  outline-offset: 1px;
+  border-color: #60a5fa;
+}
+.ro-box {
+  background: var(--ro);
+  border: 1px dashed #94a3b8;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.ro-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+@media (min-width: 560px) {
+  .ro-grid { grid-template-columns: 1fr 1fr; }
+  .ro-grid .span2 { grid-column: 1 / -1; }
+}
+.ro-item label {
+  display: block;
+  font-size: .78rem;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.ro-item .val {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.checks {
+  display: grid;
+  gap: 8px;
+}
+.check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+}
+.check input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
+.check span { font-size: .93rem; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table.people {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 640px;
+  font-size: .9rem;
+}
+table.people th, table.people td {
+  border-bottom: 1px solid var(--line);
+  padding: 8px 6px;
+  vertical-align: middle;
+  text-align: left;
+}
+table.people th {
+  font-size: .78rem;
+  color: var(--muted);
+  font-weight: 700;
+  background: #f8fafc;
+  position: sticky;
+  top: 0;
+}
+table.people select, table.people input {
+  min-height: 42px;
+  padding: 8px 8px;
+  font-size: .88rem;
+}
+.who-grid {
+  display: grid;
+  gap: 8px;
+}
+@media (min-width: 520px) {
+  .who-grid { grid-template-columns: 1fr 1fr; }
+}
+.who-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: #f8fafc;
+}
+.who-card strong { display: block; margin-bottom: 8px; }
+.inline-opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.inline-opts label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .9rem;
+  font-weight: 500;
+}
+.inline-opts input { width: 18px; height: 18px; }
+.row2 {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 560px) {
+  .row2 { grid-template-columns: 1fr 1fr; }
+}
+.footer-note {
+  color: var(--muted);
+  font-size: .82rem;
+  margin-top: 8px;
+}
+footer {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  color: var(--muted);
+  font-size: .82rem;
+}
+.nav-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 14px;
+}
+.nav-jump a {
+  text-decoration: none;
+  color: #1d4ed8;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: .82rem;
+  font-weight: 600;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
 </style>
 </head>
 <body>
 <header>
-  <h1>香港居屋家庭问卷（G0 + 五人个人卷）</h1>
-  <p>免费在线问卷 · <strong>保存=提交云端</strong> · 刷新自动从云端加载 · 名词旁「?」可看注释。</p>
-  <p>基础设定：5 人家庭（爸、妈、本人、姐、弟）。<br/>
-  <strong style="color:#86efac">你们已申请且分配已下来</strong>：G0 里「批次/是否申请」类题目可跳过；请重点填 <strong>抽签/选楼/获批结果</strong> 与资金、同住、地区偏好。</p>
+  <div class="badge">白居二 2025 · 家庭简问卷</div>
+  <h1>买第二市场资助楼：家庭情况问卷</h1>
+  <p>只问下一步需要的资料（钱、谁住、地区、每人一句话）。约 5–10 分钟。</p>
+  <p><strong>保存 = 提交云端</strong>。刷新会自动从云端加载。请勿填密码或完整身份证号。</p>
 </header>
-<div class="wrap">
-<details class="glossary-box"><summary>📘 专业名词注释（点开查看全文；题目旁「?」也可看）</summary><dl>
-<dt>绿表</dt><dd>公屋住户或持绿表资格证明书等人士申请资助出售房屋时使用的身份，一般无需白表入息资产审查（仍有其他条件）。</dd>
-<dt>白表</dt><dd>非绿表申请人（多为私人房屋住户）。申请居屋/白居二须符合入息、资产、居港年期及物业限制等。</dd>
-<dt>绿置居</dt><dd>绿表置居计划，仅绿表可申请的资助出售房屋，折扣通常比同期居屋更深。</dd>
-<dt>居屋</dt><dd>居者有其屋计划，房委会主力资助出售房屋，绿表与白表都可申请（配额另定）。</dd>
-<dt>白居二</dt><dd>白表居屋第二市场计划：白表中配额后，可在第二市场购买未补价的资助出售单位。</dd>
-<dt>第二市场</dt><dd>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</dd>
-<dt>CEP</dt><dd>Certificate of Eligibility 购买资格证明书。凭此在第二市场买未补价资助单位；白居二获批后需申领，通常有有效期。</dd>
-<dt>购买资格证明书</dt><dd>即 CEP。证明你有资格在居屋第二市场买未补价单位。</dd>
-<dt>GFC</dt><dd>绿表资格证明书（Green Form Certificate），非公屋户但符合指定绿表类别者持有，可按绿表申请。</dd>
-<dt>绿表资格证明书</dt><dd>即 GFC。证明你可按绿表身份申请居屋/绿置居等。</dd>
-<dt>IADF</dt><dd>Income and Asset Declaration Form 入息及资产申报表。抽签后获通知审查时填写并交证明文件。</dd>
-<dt>入息资产</dt><dd>家庭收入与净资产。白表有上限（如居屋2025：1人约月入3万/资产61.5万；2人+约6万/123万，以当期为准）。</dd>
-<dt>净资产</dt><dd>资产减去负债后的净值。白表审查看家庭总净资产是否超限。</dd>
-<dt>补价</dt><dd>补地价：把当年购入折扣按现时市值比例缴回，以解除公开市场转让限制。公式大致=现时市值×原折扣率。</dd>
-<dt>补地价</dt><dd>同「补价」。缴付后通常可在公开市场出售/出租（仍须办妥手续）。</dd>
-<dt>转让限制</dt><dd>购入资助房屋后一段时间内，不能自由在公开市场转售；只能按规定走第二市场或先补价。年期因批次而异（如10/15年）。</dd>
-<dt>公开市场</dt><dd>一般私人二手市场，任何人可买。资助房屋通常须先补价并过了限制期才能这样卖。</dd>
-<dt>ASP</dt><dd>Agreement for Sale and Purchase 买卖协议。选楼后与房委会签署的正式买卖合约。</dd>
-<dt>PASP</dt><dd>Provisional ASP 临时买卖协议。第二市场常见先签临约再办提名等手续。</dd>
-<dt>DoG</dt><dd>Deed of Guarantee 房委会按揭保证契据。参与银行可按较高成数批居屋按揭（如绿表约95%、白表约90%，以银行为准）。</dd>
-<dt>按揭成数</dt><dd>贷款占楼价比例。例如九成按揭=借九成、自己付一成首期。</dd>
-<dt>首期</dt><dd>买楼时自己先付的部分楼价（未计税、律师费、装修）。</dd>
-<dt>印花税</dt><dd>政府就物业买卖文件征收的税。居屋可能按市值而非折扣价评税，以律师/税局为准。</dd>
-<dt>SSD</dt><dd>额外印花税（已于2024-02-28起对新交易取消，历史个案另计）。</dd>
-<dt>BSD</dt><dd>买家印花税（已于2024-02-28起对新交易取消，历史个案另计）。</dd>
-<dt>永居</dt><dd>香港永久性居民。白表要求重点是居港年期与入境权，不一定等于必须永居，以申请须知为准。</dd>
-<dt>入境权</dt><dd>有权在香港入境及逗留。通常可有逗留期限，但不能有其他逗留条件（以须知为准）。</dd>
-<dt>居港满7年</dt><dd>白表申请人常见要求：在申请截止日已在香港通常居住满7年。绿表规则不同。</dd>
-<dt>家有长者</dt><dd>优先选楼计划之一：合资格家庭有年满60岁长者且长者须为业主/联名等，细则见须知。</dd>
-<dt>青年计划</dt><dd>白表年龄未满40岁等可参加的额外抽签号安排，与部分优先组可能互斥，见须知。</dd>
-<dt>抽签</dt><dd>搅珠：决定选楼先后次序或白居二是否获配额，不是保证一定有楼。</dd>
-<dt>次序号</dt><dd>抽签后的选楼优先顺序。号码越前通常越早进场选楼（视组别）。</dd>
-<dt>选楼</dt><dd>按次序号到指定中心选择具体单位，通常当日签买卖协议并付订金。</dd>
-<dt>公屋</dt><dd>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</dd>
-<dt>租置</dt><dd>租者置其屋：公屋租户购买所住单位。新阶段已停，现租户仍可能购自住单位。</dd>
-<dt>富户</dt><dd>公屋「维护公屋资源」下须申报入息资产、缴额外租金等的住户类别，影响绿表等资格。</dd>
-<dt>NTQ</dt><dd>Notice to Quit 迁出通知书。租约终止相关文件。</dd>
-<dt>扣分制</dt><dd>公屋不当行为扣分制度。高分可能影响继续租住或申请资格。</dd>
-<dt>自住</dt><dd>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</dd>
-<dt>联名业主</dt><dd>楼契上有多于一人名字。家有长者等计划可能要求长者为业主之一。</dd>
-<dt>绝对判令</dt><dd>离婚程序完成的法院最终判令。未取得前婚姻状况认定可能不同。</dd>
-<dt>管养令</dt><dd>法院关于子女管养的命令。与未成年子女同申时可能需要。</dd>
-<dt>实用面积</dt><dd>单位实际可用面积（一般小于建筑面积），售楼书会列明。</dd>
-<dt>未落成</dt><dd>楼花：建成前出售，入伙要等落成（如2027–2028），期间需自行安排住所。</dd>
-<dt>折扣</dt><dd>相对市值的减价比例。折扣越深，将来补价占现时市值的比例通常越高。</dd>
-<dt>市值</dt><dd>估值反映的市场价值。补价、印花税都可能用市值而非你付的折扣价。</dd>
-<dt>全球资产</dt><dd>香港以外（如内地）房产、存款、投资也要计入白表资产申报。</dd>
-<dt>强积金</dt><dd>MPF。强制供款可有限度从入息扣减；自愿性供款通常不能扣。</dd>
-<dt>HIBOR</dt><dd>银行同业拆息，浮息按揭常用参考，利率升则供款可能升。</dd>
-<dt>P 按</dt><dd>最优惠利率（Prime）相关的按揭定价方式之一。</dd>
-<dt>担保人</dt><dd>以自己信用为借款人担保还款的人，银行可能要求。</dd>
-<dt>破产</dt><dd>法律上的破产程序。可能影响按揭批核与资产状况。</dd>
-<dt>IVA</dt><dd>个人自愿安排，债务重组的一种，类似影响信贷。</dd>
-<dt>房委会</dt><dd>香港房屋委员会，居屋/公屋等政策执行主体之一。</dd>
-<dt>房屋署</dt><dd>房屋署，执行房屋委员会政策、处理申请与屋邨管理等。</dd>
-<dt>乐富</dt><dd>房委会客户服务中心所在，居屋选楼常见地点之一（九龙横头磡）。</dd>
-<dt>观塘</dt><dd>绿置居选楼常见地点之一（如巧明街一带销售中心）。</dd>
-</dl></details>
 
-    <div class="toolbar">
+<div class="wrap">
+  <div class="toolbar">
     <button type="button" class="btn ok" id="cloudSubmit">☁ 保存并提交云端</button>
     <button type="button" class="btn secondary" id="cloudReload">从云端刷新</button>
     <button type="button" class="btn secondary" id="exportAll">导出 JSON 备份</button>
-    <button type="button" class="btn secondary" id="exportCsv">导出 CSV</button>
-    <button type="button" class="btn secondary" id="clearAll">清空本机存档</button>
+    <button type="button" class="btn secondary" id="clearAll">清空本机草稿</button>
     <span class="progress" id="progress"></span>
     <span class="cloud-status" id="cloudStatus"></span>
   </div>
+
   <div class="field" style="margin:0 0 12px">
-    <label class="lab" for="cloudLinkInput"><span class="fid">云端</span> 家庭云端链接（换设备请粘贴；刷新会自动用此链接拉取）
-      <span class="tip-btn" tabindex="0">?<span class="tip-pop"><b>云端链接</b><br/>首次点「保存并提交云端」后自动生成（主通道 bytebin）。把链接分给家人，或收藏带 ?c= 的网址；刷新会从云端加载。旧 dpaste 链接仍可粘贴加载。</span></span>
+    <label class="lab" for="cloudLinkInput">家庭云端链接
+      <span class="hint">首次点「保存并提交云端」后自动生成。换手机可粘贴此链接，或用带 ?c= 的网址打开。</span>
     </label>
     <div class="cloud-row">
-      <input type="text" id="cloudLinkInput" placeholder="首次提交后自动填入 https://bytebin.lucko.me/……" />
+      <input type="text" id="cloudLinkInput" placeholder="首次提交后自动填入 https://bytebin.lucko.me/……" autocomplete="off"/>
       <button type="button" class="btn secondary" id="applyCloudLink">用此链接加载</button>
     </div>
   </div>
+
   <div id="cloudBox" class="cloud-box" hidden>
-    <div class="cloud-title">云端提交成功 — 请把下面链接发给顾问</div>
+    <h3>云端保存成功 — 请把下面链接发给顾问/家人</h3>
     <div class="cloud-row">
       <input type="text" id="cloudUrl" readonly />
       <button type="button" class="btn" id="copyCloud">复制链接</button>
     </div>
-    <p class="cloud-hint" id="cloudHint"></p>
-    <p class="cloud-hint">顾问读取口令：在对话里发送「读取答卷」+ 该链接即可。</p>
+    <p class="footer-note" id="cloudHint"></p>
   </div>
   <div id="cloudErr" class="cloud-err" hidden></div>
-  <div class="tabs"><button type="button" class="tab" data-tab="G0">G0 家庭通用</button><button type="button" class="tab" data-tab="P1">P1 父亲</button><button type="button" class="tab" data-tab="P2">P2 母亲</button><button type="button" class="tab" data-tab="P3">P3 本人</button><button type="button" class="tab" data-tab="P4">P4 姐姐</button><button type="button" class="tab" data-tab="P5">P5 弟弟</button></div>
-  <section class="panel" id="panel-G0" hidden><h2>G0 家庭通用</h2><p class="note">全家人只填 <strong>1 份</strong>。建议先填本页，再填五份个人卷。</p>
-<div class="skip-box">
-  <strong>已申请 / 分配已下来 — 填写指引</strong>
-  <ul>
-    <li><b>可跳过</b>：7.1「是否知道2025批次时间表」、7.2 若已写明「已申请…」、7.4「未申请原因」、以及纯政策科普类重复题。</li>
-    <li><b>必填</b>：下面「R. 申请与分配结果」整段 + 第 4/5 节资金入息资产 + 第 6 节意愿与地区 + 个人卷资格项。</li>
-    <li>目标：根据<strong>你们已拿到的次序/项目/是否获批</strong>，判断选哪套、能否上会、绿白表与供款是否匹配。</li>
-  </ul>
+
+  <nav class="nav-jump" aria-label="章节">
+    <a href="#sec-a">A 已有结果</a>
+    <a href="#sec-b">B 谁住/业主</a>
+    <a href="#sec-c">C 钱</a>
+    <a href="#sec-d">D 想住哪</a>
+    <a href="#sec-e">E 每人情况</a>
+    <a href="#sec-f">F 担心</a>
+    <a href="#sec-g">G 其他</a>
+  </nav>
+
+  <!-- A -->
+  <section class="section" id="sec-a">
+    <h2><span class="tag ro">只读</span> A. 已有结果（请确认）</h2>
+    <p class="note">这些是已知事实，不用重填。若有错请在下方「修正备注」写一句。</p>
+    <div class="ro-box">
+      <div class="ro-grid">
+        <div class="ro-item">
+          <label>计划</label>
+          <div class="val">白居二 2025（白表第二市场）</div>
+          <input type="hidden" name="A_plan" value="白居二2025"/>
+        </div>
+        <div class="ro-item">
+          <label>申请编号</label>
+          <div class="val">W021896</div>
+          <input type="hidden" name="A_app_no" value="W021896"/>
+        </div>
+        <div class="ro-item">
+          <label>随机排序次序</label>
+          <div class="val">1464</div>
+          <input type="hidden" name="A_order" value="1464"/>
+        </div>
+        <div class="ro-item">
+          <label>相关编号 / WF编号（参考）</label>
+          <div class="val">WF25015194</div>
+          <input type="hidden" name="A_wf_no" value="WF25015194"/>
+        </div>
+        <div class="ro-item span2">
+          <label>家庭成员（申请口径）</label>
+          <div class="val">5 人：父亲、母亲、本人、姐姐、弟弟</div>
+          <input type="hidden" name="A_family" value="父,母,本人,姐,弟"/>
+        </div>
+      </div>
+    </div>
+    <div class="field" style="margin-top:14px">
+      <label class="lab" for="A_fix">上面有错吗？有的话写一句修正
+        <span class="hint">没错可留空</span>
+      </label>
+      <input type="text" id="A_fix" name="A_fix" placeholder="例：次序不是 1464 / 家人人数有变"/>
+    </div>
+    <div class="field">
+      <label class="lab" for="A_stage">现在到哪一步了？</label>
+      <select id="A_stage" name="A_stage">
+        <option value="">— 请选择 —</option>
+        <option value="已有次序-等通知">已有次序，等后续通知</option>
+        <option value="已获批/资格证明">已获批 / 有购买资格证明（CEP）</option>
+        <option value="已在看楼">已在看第二市场单位</option>
+        <option value="已谈价/临约">已谈价或签临时买卖</option>
+        <option value="不清楚">不清楚</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="lab" for="A_contact">联系方式（WhatsApp / 电话 / 电邮，任选）
+        <span class="hint">方便回传建议；可不写全名</span>
+      </label>
+      <input type="text" id="A_contact" name="A_contact" placeholder="例：+852 9xxx xxxx"/>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="section" id="sec-b">
+    <h2><span class="tag">B</span> 家里谁一起住、谁做业主</h2>
+    <p class="note">买第二市场资助楼后，一般要求业主与申请表所列家人<strong>实际同住</strong>。先勾清楚即可。</p>
+    <div class="who-grid">
+      <div class="who-card">
+        <strong>父亲</strong>
+        <div class="inline-opts">
+          <label><input type="checkbox" name="B_live_father" value="1"/> 会同住</label>
+          <label><input type="checkbox" name="B_owner_father" value="1"/> 做业主/联名</label>
+        </div>
+      </div>
+      <div class="who-card">
+        <strong>母亲</strong>
+        <div class="inline-opts">
+          <label><input type="checkbox" name="B_live_mother" value="1"/> 会同住</label>
+          <label><input type="checkbox" name="B_owner_mother" value="1"/> 做业主/联名</label>
+        </div>
+      </div>
+      <div class="who-card">
+        <strong>本人</strong>
+        <div class="inline-opts">
+          <label><input type="checkbox" name="B_live_self" value="1"/> 会同住</label>
+          <label><input type="checkbox" name="B_owner_self" value="1"/> 做业主/联名</label>
+        </div>
+      </div>
+      <div class="who-card">
+        <strong>姐姐</strong>
+        <div class="inline-opts">
+          <label><input type="checkbox" name="B_live_sister" value="1"/> 会同住</label>
+          <label><input type="checkbox" name="B_owner_sister" value="1"/> 做业主/联名</label>
+        </div>
+      </div>
+      <div class="who-card">
+        <strong>弟弟</strong>
+        <div class="inline-opts">
+          <label><input type="checkbox" name="B_live_brother" value="1"/> 会同住</label>
+          <label><input type="checkbox" name="B_owner_brother" value="1"/> 做业主/联名</label>
+        </div>
+      </div>
+    </div>
+    <div class="field" style="margin-top:14px">
+      <label class="lab" for="B_live_note">若有人<strong>不同住</strong>，简单写谁、为什么
+        <span class="hint">没有可留空</span>
+      </label>
+      <input type="text" id="B_live_note" name="B_live_note" placeholder="例：姐姐在内地工作，暂不同住"/>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="section" id="sec-c">
+    <h2><span class="tag">C</span> 钱够不够（大概即可）</h2>
+    <p class="note">不用精确到元。用来判断首期、月供压力，以及有没有「资产过高」风险（白表审查会看家庭总资产，含内地）。</p>
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="C_down_pay">大概能拿多少做<strong>首期</strong>（万港元）
+          <span class="hint">自己先付的那一笔，不含月供</span>
+        </label>
+        <input type="number" id="C_down_pay" name="C_down_pay" min="0" step="1" placeholder="例：40"/>
+      </div>
+      <div class="field">
+        <label class="lab" for="C_monthly">大概能接受的<strong>月供</strong>（港元/月）
+          <span class="hint">全家可负担的每月还款</span>
+        </label>
+        <input type="number" id="C_monthly" name="C_monthly" min="0" step="100" placeholder="例：12000"/>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="C_income">全家每月收入大概（港元）
+          <span class="hint">工作+其他稳定收入，粗算即可</span>
+        </label>
+        <input type="number" id="C_income" name="C_income" min="0" step="1000" placeholder="例：45000"/>
+      </div>
+      <div class="field">
+        <label class="lab" for="C_budget">可接受楼价上限大概（万港元）
+          <span class="hint">第二市场折扣价范围，心里有数即可</span>
+        </label>
+        <input type="number" id="C_budget" name="C_budget" min="0" step="10" placeholder="例：350"/>
+      </div>
+    </div>
+    <div class="field">
+      <label class="lab" for="C_mainland">家里有没有<strong>内地房产</strong>？
+        <span class="hint">有的话审查时通常要申报；写有/没有 + 大概价值或城市</span>
+      </label>
+      <select id="C_mainland" name="C_mainland">
+        <option value="">— 请选择 —</option>
+        <option value="没有">没有</option>
+        <option value="有-少量">有，价值不高</option>
+        <option value="有-中等">有，中等价值</option>
+        <option value="有-较高">有，价值较高 / 不止一套</option>
+        <option value="不清楚">不清楚</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="lab" for="C_mainland_note">内地房产补充（选填）</label>
+      <input type="text" id="C_mainland_note" name="C_mainland_note" placeholder="例：深圳一套住宅，大概估值 xxx 万人民币"/>
+    </div>
+    <div class="field">
+      <label class="lab" for="C_other_asset">香港以外其他大额资产？（选填）
+        <span class="hint">如大额存款、股票；没有写「无」</span>
+      </label>
+      <input type="text" id="C_other_asset" name="C_other_asset" placeholder="例：无 / 存款约 xx 万"/>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="section" id="sec-d">
+    <h2><span class="tag">D</span> 想住哪里、要几房</h2>
+    <p class="note">第二市场单位多为已建成居屋/资助楼，新旧、地区差别大。先写偏好，方便筛盘。</p>
+    <div class="field">
+      <label class="lab">地区偏好（可多选）</label>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="D_dist_nt" value="1"/><span>新界（沙田、大埔、元朗、屯门、北区等）</span></label>
+        <label class="check"><input type="checkbox" name="D_dist_kln" value="1"/><span>九龙（观塘、黄大仙、深水埗等）</span></label>
+        <label class="check"><input type="checkbox" name="D_dist_hk" value="1"/><span>港岛</span></label>
+        <label class="check"><input type="checkbox" name="D_dist_islands" value="1"/><span>离岛 / 东涌</span></label>
+        <label class="check"><input type="checkbox" name="D_dist_any" value="1"/><span>地区不限，以楼价/面积优先</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label class="lab" for="D_dist_note">更具体想去的区/屋苑（选填）</label>
+      <input type="text" id="D_dist_note" name="D_dist_note" placeholder="例：沙田、马鞍山；不想屯门"/>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="D_rooms">希望几房</label>
+        <select id="D_rooms" name="D_rooms">
+          <option value="">— 请选择 —</option>
+          <option value="2房">2 房</option>
+          <option value="3房">3 房</option>
+          <option value="3房以上">3 房以上</option>
+          <option value="能住即可">能住即可</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="lab" for="D_old">能否接受<strong>较旧楼</strong>？
+          <span class="hint">第二市场很多楼龄较长</span>
+        </label>
+        <select id="D_old" name="D_old">
+          <option value="">— 请选择 —</option>
+          <option value="可以">可以，接受旧一点</option>
+          <option value="一般">一般，不要太旧</option>
+          <option value="尽量新">尽量新 / 较新批次</option>
+          <option value="不清楚">不清楚</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- E -->
+  <section class="section" id="sec-e">
+    <h2><span class="tag">E</span> 每人一句话情况</h2>
+    <p class="note">5 人各填两格：有没有工作、人在不在香港。三名子女若暂无稳定工作，如实选即可。</p>
+    <div class="table-wrap">
+      <table class="people">
+        <thead>
+          <tr>
+            <th>成员</th>
+            <th>工作</th>
+            <th>是否在香港</th>
+            <th>补充一句（选填）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>父亲</td>
+            <td>
+              <select name="E_job_father">
+                <option value="">—</option>
+                <option value="有稳定工作">有稳定工作</option>
+                <option value="散工/不稳定">散工/不稳定</option>
+                <option value="退休">退休</option>
+                <option value="无业">无业</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td>
+              <select name="E_hk_father">
+                <option value="">—</option>
+                <option value="常住香港">常住香港</option>
+                <option value="两边走">两边走</option>
+                <option value="主要在内地">主要在内地</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td><input type="text" name="E_note_father" placeholder="可选"/></td>
+          </tr>
+          <tr>
+            <td>母亲</td>
+            <td>
+              <select name="E_job_mother">
+                <option value="">—</option>
+                <option value="有稳定工作">有稳定工作</option>
+                <option value="散工/不稳定">散工/不稳定</option>
+                <option value="退休">退休</option>
+                <option value="无业">无业</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td>
+              <select name="E_hk_mother">
+                <option value="">—</option>
+                <option value="常住香港">常住香港</option>
+                <option value="两边走">两边走</option>
+                <option value="主要在内地">主要在内地</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td><input type="text" name="E_note_mother" placeholder="可选"/></td>
+          </tr>
+          <tr>
+            <td>本人</td>
+            <td>
+              <select name="E_job_self">
+                <option value="">—</option>
+                <option value="有稳定工作">有稳定工作</option>
+                <option value="散工/不稳定">散工/不稳定</option>
+                <option value="学生">学生</option>
+                <option value="无业">无业</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td>
+              <select name="E_hk_self">
+                <option value="">—</option>
+                <option value="常住香港">常住香港</option>
+                <option value="两边走">两边走</option>
+                <option value="主要在内地">主要在内地</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td><input type="text" name="E_note_self" placeholder="可选"/></td>
+          </tr>
+          <tr>
+            <td>姐姐</td>
+            <td>
+              <select name="E_job_sister">
+                <option value="">—</option>
+                <option value="有稳定工作">有稳定工作</option>
+                <option value="散工/不稳定">散工/不稳定</option>
+                <option value="学生">学生</option>
+                <option value="无业">无业</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td>
+              <select name="E_hk_sister">
+                <option value="">—</option>
+                <option value="常住香港">常住香港</option>
+                <option value="两边走">两边走</option>
+                <option value="主要在内地">主要在内地</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td><input type="text" name="E_note_sister" placeholder="可选"/></td>
+          </tr>
+          <tr>
+            <td>弟弟</td>
+            <td>
+              <select name="E_job_brother">
+                <option value="">—</option>
+                <option value="有稳定工作">有稳定工作</option>
+                <option value="散工/不稳定">散工/不稳定</option>
+                <option value="学生">学生</option>
+                <option value="无业">无业</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td>
+              <select name="E_hk_brother">
+                <option value="">—</option>
+                <option value="常住香港">常住香港</option>
+                <option value="两边走">两边走</option>
+                <option value="主要在内地">主要在内地</option>
+                <option value="其他">其他</option>
+              </select>
+            </td>
+            <td><input type="text" name="E_note_brother" placeholder="可选"/></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- F -->
+  <section class="section" id="sec-f">
+    <h2><span class="tag">F</span> 最担心什么（可多选）</h2>
+    <p class="note">勾出最在意的点，方便优先给建议。</p>
+    <div class="checks">
+      <label class="check"><input type="checkbox" name="F_w_afford" value="1"/><span>怕供不起 / 月供太高</span></label>
+      <label class="check"><input type="checkbox" name="F_w_down" value="1"/><span>首期不够</span></label>
+      <label class="check"><input type="checkbox" name="F_w_asset" value="1"/><span>资产/收入审查过不了（含内地房产）</span></label>
+      <label class="check"><input type="checkbox" name="F_w_job" value="1"/><span>子女无稳定工作，按揭难批</span></label>
+      <label class="check"><input type="checkbox" name="F_w_area" value="1"/><span>找不到合适地区/房型</span></label>
+      <label class="check"><input type="checkbox" name="F_w_old" value="1"/><span>楼太旧 / 维修风险</span></label>
+      <label class="check"><input type="checkbox" name="F_w_process" value="1"/><span>手续复杂、不知道下一步做什么</span></label>
+      <label class="check"><input type="checkbox" name="F_w_time" value="1"/><span>资格/次序有效期、时间来不及</span></label>
+    </div>
+  </section>
+
+  <!-- G -->
+  <section class="section" id="sec-g">
+    <h2><span class="tag">G</span> 其他想说的</h2>
+    <div class="field">
+      <label class="lab" for="G_note">随便写（开放）
+        <span class="hint">例如：已看过哪些盘、银行初步意见、家庭特别情况</span>
+      </label>
+      <textarea id="G_note" name="G_note" rows="4" placeholder="没有可留空"></textarea>
+    </div>
+    <div class="field">
+      <label class="lab" for="G_filler">主填人是谁</label>
+      <select id="G_filler" name="G_filler">
+        <option value="">— 请选择 —</option>
+        <option value="父亲">父亲</option>
+        <option value="母亲">母亲</option>
+        <option value="本人">本人</option>
+        <option value="姐姐">姐姐</option>
+        <option value="弟弟">弟弟</option>
+        <option value="其他人">其他人</option>
+      </select>
+    </div>
+  </section>
+
+  <div class="toolbar" style="position:static;border:0;background:transparent;padding:8px 0 0">
+    <button type="button" class="btn ok" id="cloudSubmitBottom">☁ 保存并提交云端</button>
+    <button type="button" class="btn secondary" id="exportAllBottom">导出 JSON 备份</button>
+  </div>
+  <p class="footer-note">点保存后把云端链接发回对话，即可根据答卷给下一步建议。本问卷不是房委会表格，不构成法律/按揭意见。</p>
 </div>
-<div class="field"><label class="lab" for="G0_R0"><span class="fid">R0</span> 当前进度（已申请家庭）</label><select id="G0_R0" name="G0_R0"><option value="">— 请选择 —</option><option value="已申请-等搅珠结果">已申请-等搅珠结果</option><option value="已搅珠-有次序号">已搅珠-有次序号</option><option value="已获邀选楼">已获邀选楼</option><option value="已选楼/已签约">已选楼/已签约</option><option value="已获白居二配额/CEP">已获白居二配额/CEP</option><option value="落选/未获分配">落选/未获分配</option><option value="其他">其他</option></select></div>
-<div class="field"><label class="lab" for="G0_R1"><span class="fid">R1</span> 已申请哪些计划（可多选，用逗号写）</label><input type="text" id="G0_R1" name="G0_R1" placeholder="例：居屋2025, 绿置居2025, 白居二2025"/></div>
-<div class="field"><label class="lab" for="G0_R2"><span class="fid">R2</span> 绿表还是白表申请？<span class="tip-btn" tabindex="0" aria-label="注释：绿表">?<span class="tip-pop"><b>绿表</b><br/>公屋住户或持绿表资格证明书等人士申请资助出售房屋时使用的身份，一般无需白表入息资产审查（仍有其他条件）。</span></span><span class="tip-btn" tabindex="0" aria-label="注释：白表">?<span class="tip-pop"><b>白表</b><br/>非绿表申请人（多为私人房屋住户）。申请居屋/白居二须符合入息、资产、居港年期及物业限制等。</span></span></label><select id="G0_R2" name="G0_R2"><option value="">— 请选择 —</option><option value="绿表">绿表</option><option value="白表">白表</option><option value="绿表+白表不同人">绿表+白表不同人</option><option value="不清楚">不清楚</option></select></div>
-<div class="field"><label class="lab" for="G0_R3"><span class="fid">R3</span> 申请编号后两位数 / 随机次序（如知道）</label><input type="text" id="G0_R3" name="G0_R3" placeholder="居屋次序、绿置居次序、白居二结果可分开写"/></div>
-<div class="field"><label class="lab" for="G0_R4"><span class="fid">R4</span> 是否已获通知选楼？选楼日期/场次<span class="tip-btn" tabindex="0" aria-label="注释：选楼">?<span class="tip-pop"><b>选楼</b><br/>按次序号到指定中心选择具体单位，通常当日签买卖协议并付订金。</span></span></label><textarea id="G0_R4" name="G0_R4" rows="2" placeholder="日期、地点（乐富/观塘）、时段"></textarea></div>
-<div class="field"><label class="lab" for="G0_R5"><span class="fid">R5</span> 已选或意向屋苑/座数/面积/售价（如有）</label><textarea id="G0_R5" name="G0_R5" rows="3" placeholder="例：启阳苑 / 未选楼但偏好东涌 / 预算300万内"></textarea></div>
-<div class="field"><label class="lab" for="G0_R6"><span class="fid">R6</span> 白居二：是否获批准信/CEP？有效期？<span class="tip-btn" tabindex="0" aria-label="注释：白居二">?<span class="tip-pop"><b>白居二</b><br/>白表居屋第二市场计划：白表中配额后，可在第二市场购买未补价的资助出售单位。</span></span><span class="tip-btn" tabindex="0" aria-label="注释：CEP">?<span class="tip-pop"><b>CEP</b><br/>Certificate of Eligibility 购买资格证明书。凭此在第二市场买未补价资助单位；白居二获批后需申领，通常有有效期。</span></span></label><textarea id="G0_R6" name="G0_R6" rows="2" placeholder="无则写无"></textarea></div>
-<div class="field"><label class="lab" for="G0_R7"><span class="fid">R7</span> 资格审查：是否已交 IADF？结果？<span class="tip-btn" tabindex="0" aria-label="注释：IADF">?<span class="tip-pop"><b>IADF</b><br/>Income and Asset Declaration Form 入息及资产申报表。抽签后获通知审查时填写并交证明文件。</span></span></label><select id="G0_R7" name="G0_R7"><option value="">— 请选择 —</option><option value="未收到审查通知">未收到审查通知</option><option value="已交等待结果">已交等待结果</option><option value="已通过">已通过</option><option value="被要求补件">被要求补件</option><option value="不通过/取消">不通过/取消</option><option value="不清楚">不清楚</option></select></div>
-<div class="field"><label class="lab" for="G0_R8"><span class="fid">R8</span> 申请表上列出的成员是谁？业主拟是谁？</label><textarea id="G0_R8" name="G0_R8" rows="2" placeholder="例：父+母+三子女；拟父母联名"></textarea></div>
-<div class="field"><label class="lab" for="G0_R9"><span class="fid">R9</span> 分配结果对你们的最大不确定（开放）</label><textarea id="G0_R9" name="G0_R9" rows="2" placeholder="例：怕供不起、怕面积太小、要不要放弃公屋"></textarea></div>
-<div class="field"><label class="lab" for="G0_0.1"><span class="fid">0.1</span> 主填人是谁</label><select id="G0_0.1" name="G0_0.1"><option value="">— 请选择 —</option><option value="父亲">父亲</option><option value="母亲">母亲</option><option value="本人">本人</option><option value="姐姐">姐姐</option><option value="弟弟">弟弟</option><option value="其他人">其他人</option></select></div><div class="field"><label class="lab" for="G0_0.2"><span class="fid">0.2</span> 填表日期</label><input type="date" id="G0_0.2" name="G0_0.2"/></div><div class="field"><label class="lab" for="G0_0.3"><span class="fid">0.3</span> 联系邮箱或WhatsApp</label><input type="text" id="G0_0.3" name="G0_0.3" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_1.1"><span class="fid">1.1</span> 五人结构仍为父/母/本人/姐/弟？</label><select id="G0_1.1" name="G0_1.1"><option value="">— 请选择 —</option><option value="是">是</option><option value="有变化">有变化</option></select></div><div class="field"><label class="lab" for="G0_1.1b"><span class="fid">1.1b</span> 若有变化请说明</label><textarea id="G0_1.1b" name="G0_1.1b" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_1.2"><span class="fid">1.2</span> 五人是否全部计划同住未来单位</label><select id="G0_1.2" name="G0_1.2"><option value="">— 请选择 —</option><option value="全部同住">全部同住</option><option value="部分同住">部分同住</option><option value="未定">未定</option></select></div><div class="field"><label class="lab" for="G0_1.2b"><span class="fid">1.2b</span> 若部分同住：谁不住</label><input type="text" id="G0_1.2b" name="G0_1.2b" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_1.3"><span class="fid">1.3</span> 计划列入同一申请表的成员（可多选，用逗号）</label><input type="text" id="G0_1.3" name="G0_1.3" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_1.4"><span class="fid">1.4</span> 是否有其他人加入申请</label><textarea id="G0_1.4" name="G0_1.4" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_1.5"><span class="fid">1.5</span> 父母婚姻关系</label><select id="G0_1.5" name="G0_1.5"><option value="">— 请选择 —</option><option value="已婚存续">已婚存续</option><option value="分居未离婚">分居未离婚</option><option value="离婚">离婚</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="G0_1.6a"><span class="fid">1.6a</span> 父亲是否≥60岁</label><select id="G0_1.6a" name="G0_1.6a"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="临界/不清楚">临界/不清楚</option></select></div><div class="field"><label class="lab" for="G0_1.6b"><span class="fid">1.6b</span> 母亲是否≥60岁</label><select id="G0_1.6b" name="G0_1.6b"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="临界/不清楚">临界/不清楚</option></select></div><div class="field"><label class="lab" for="G0_1.7"><span class="fid">1.7</span> 家有初生/怀孕≥16周</label><select id="G0_1.7" name="G0_1.7"><option value="">— 请选择 —</option><option value="无">无</option><option value="有">有</option></select></div><div class="field"><label class="lab" for="G0_1.7b"><span class="fid">1.7b</span> 初生/怀孕详情</label><input type="text" id="G0_1.7b" name="G0_1.7b" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_1.9"><span class="fid">1.9</span> 希望的业主安排</label><select id="G0_1.9" name="G0_1.9"><option value="">— 请选择 —</option><option value="父母联名">父母联名</option><option value="父或母一人">父或母一人</option><option value="子女之一">子女之一</option><option value="父母+一名子女">父母+一名子女</option><option value="未定需建议">未定需建议</option></select></div><div class="field"><label class="lab" for="G0_2.1"><span class="fid">2.1</span> 当前住房类型</label><select id="G0_2.1" name="G0_2.1"><option value="">— 请选择 —</option><option value="香港公屋">香港公屋</option><option value="香港私人租住">香港私人租住</option><option value="香港自置私楼">香港自置私楼</option><option value="香港居屋/资助盘">香港居屋/资助盘</option><option value="内地">内地</option><option value="分居多地">分居多地</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="G0_2.1b"><span class="fid">2.1b</span> 住房详情（屋邨/地址区/月租）</label><textarea id="G0_2.1b" name="G0_2.1b" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_2.2"><span class="fid">2.2</span> 租约到期与能否续到2027-28</label><input type="text" id="G0_2.2" name="G0_2.2" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_2.3"><span class="fid">2.3</span> 公屋户主是谁；富户与否<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span><span class="tip-btn" tabindex="0" aria-label="注释：富户">?<span class="tip-pop"><b>富户</b><br/>公屋「维护公屋资源」下须申报入息资产、缴额外租金等的住户类别，影响绿表等资格。</span></span></label><input type="text" id="G0_2.3" name="G0_2.3" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_2.4"><span class="fid">2.4</span> 现住房面积与睡房数</label><input type="text" id="G0_2.4" name="G0_2.4" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_2.5"><span class="fid">2.5</span> 最迟希望安稳入住</label><select id="G0_2.5" name="G0_2.5"><option value="">— 请选择 —</option><option value="1年内">1年内</option><option value="1-2年">1-2年</option><option value="2-3年">2-3年</option><option value="可等3年以上">可等3年以上</option></select></div><div class="field"><label class="lab" for="G0_3.1"><span class="fid">3.1</span> 公屋租户户主是谁<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><input type="text" id="G0_3.1" name="G0_3.1" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_3.2"><span class="fid">3.2</span> 谁持有绿表资格证明书GFC<span class="tip-btn" tabindex="0" aria-label="注释：绿表资格证明书">?<span class="tip-pop"><b>绿表资格证明书</b><br/>即 GFC。证明你可按绿表身份申请居屋/绿置居等。</span></span><span class="tip-btn" tabindex="0" aria-label="注释：GFC">?<span class="tip-pop"><b>GFC</b><br/>绿表资格证明书（Green Form Certificate），非公屋户但符合指定绿表类别者持有，可按绿表申请。</span></span><span class="tip-btn" tabindex="0" aria-label="注释：绿表">?<span class="tip-pop"><b>绿表</b><br/>公屋住户或持绿表资格证明书等人士申请资助出售房屋时使用的身份，一般无需白表入息资产审查（仍有其他条件）。</span></span></label><input type="text" id="G0_3.2" name="G0_3.2" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_3.3"><span class="fid">3.3</span> 谁在轮候公屋；多久<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><input type="text" id="G0_3.3" name="G0_3.3" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_3.4"><span class="fid">3.4</span> 你们判断路径</label><select id="G0_3.4" name="G0_3.4"><option value="">— 请选择 —</option><option value="明显绿表">明显绿表</option><option value="明显白表">明显白表</option><option value="混合">混合</option><option value="完全不清楚">完全不清楚</option></select></div><div class="field"><label class="lab" for="G0_3.5"><span class="fid">3.5</span> 是否愿意为绿表继续/申请公屋<span class="tip-btn" tabindex="0" aria-label="注释：绿表">?<span class="tip-pop"><b>绿表</b><br/>公屋住户或持绿表资格证明书等人士申请资助出售房屋时使用的身份，一般无需白表入息资产审查（仍有其他条件）。</span></span><span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><select id="G0_3.5" name="G0_3.5"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="已在轮候">已在轮候</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="G0_3.6"><span class="fid">3.6</span> 了解购楼后须交回公屋<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><select id="G0_3.6" name="G0_3.6"><option value="">— 请选择 —</option><option value="了解并接受">了解并接受</option><option value="有顾虑">有顾虑</option><option value="不了解">不了解</option></select></div><div class="field"><label class="lab" for="G0_4.1"><span class="fid">4.1</span> 全家每月总入息HKD</label><select id="G0_4.1" name="G0_4.1"><option value="">— 请选择 —</option><option value="0">0</option><option value="&lt;1万">&lt;1万</option><option value="1-3万">1-3万</option><option value="3-6万">3-6万</option><option value="6-10万">6-10万</option><option value="&gt;10万">&gt;10万</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="G0_4.2"><span class="fid">4.2</span> 入息主要来源</label><input type="text" id="G0_4.2" name="G0_4.2" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_4.3"><span class="fid">4.3</span> 父母工作/退休金/津贴分项</label><textarea id="G0_4.3" name="G0_4.3" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_4.4"><span class="fid">4.4</span> 三子女无稳定工作是否属实；有无隐性收入</label><textarea id="G0_4.4" name="G0_4.4" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_4.5"><span class="fid">4.5</span> 全家净资产区间<span class="tip-btn" tabindex="0" aria-label="注释：净资产">?<span class="tip-pop"><b>净资产</b><br/>资产减去负债后的净值。白表审查看家庭总净资产是否超限。</span></span></label><select id="G0_4.5" name="G0_4.5"><option value="">— 请选择 —</option><option value="&lt;30万">&lt;30万</option><option value="30-61.5万">30-61.5万</option><option value="61.5-123万">61.5-123万</option><option value="123-300万">123-300万</option><option value="300-500万">300-500万</option><option value="&gt;500万">&gt;500万</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="G0_4.6"><span class="fid">4.6</span> 内地房产详情（套数/城市/市值/按揭）<span class="tip-btn" tabindex="0" aria-label="注释：市值">?<span class="tip-pop"><b>市值</b><br/>估值反映的市场价值。补价、印花税都可能用市值而非你付的折扣价。</span></span></label><textarea id="G0_4.6" name="G0_4.6" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_4.7"><span class="fid">4.7</span> 香港车位/商铺/工业</label><input type="text" id="G0_4.7" name="G0_4.7" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_4.8"><span class="fid">4.8</span> 即将到账大额资金</label><input type="text" id="G0_4.8" name="G0_4.8" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_4.9"><span class="fid">4.9</span> 大额债务月供与余额</label><input type="text" id="G0_4.9" name="G0_4.9" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_4.10"><span class="fid">4.10</span> 强积金与自愿性供款情况<span class="tip-btn" tabindex="0" aria-label="注释：强积金">?<span class="tip-pop"><b>强积金</b><br/>MPF。强制供款可有限度从入息扣减；自愿性供款通常不能扣。</span></span></label><input type="text" id="G0_4.10" name="G0_4.10" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_4.11"><span class="fid">4.11</span> 自测白表2人+是否超入息6万/资产123万<span class="tip-btn" tabindex="0" aria-label="注释：白表">?<span class="tip-pop"><b>白表</b><br/>非绿表申请人（多为私人房屋住户）。申请居屋/白居二须符合入息、资产、居港年期及物业限制等。</span></span></label><select id="G0_4.11" name="G0_4.11"><option value="">— 请选择 —</option><option value="肯定超">肯定超</option><option value="可能擦边">可能擦边</option><option value="肯定不超">肯定不超</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="G0_5.1"><span class="fid">5.1</span> 可动用现金（首期+税+律师+装修）<span class="tip-btn" tabindex="0" aria-label="注释：首期">?<span class="tip-pop"><b>首期</b><br/>买楼时自己先付的部分楼价（未计税、律师费、装修）。</span></span></label><select id="G0_5.1" name="G0_5.1"><option value="">— 请选择 —</option><option value="&lt;20万">&lt;20万</option><option value="20-50万">20-50万</option><option value="50-100万">50-100万</option><option value="100-200万">100-200万</option><option value="&gt;200万">&gt;200万</option></select></div><div class="field"><label class="lab" for="G0_5.2"><span class="fid">5.2</span> 资金在谁名下；能否转名</label><input type="text" id="G0_5.2" name="G0_5.2" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_5.3"><span class="fid">5.3</span> 可接受每月供款上限</label><select id="G0_5.3" name="G0_5.3"><option value="">— 请选择 —</option><option value="&lt;8000">&lt;8000</option><option value="8-12000">8-12000</option><option value="12-18000">12-18000</option><option value="18-25000">18-25000</option><option value="&gt;25000">&gt;25000</option></select></div><div class="field"><label class="lab" for="G0_5.4"><span class="fid">5.4</span> 亲友可否担保</label><select id="G0_5.4" name="G0_5.4"><option value="">— 请选择 —</option><option value="可以">可以</option><option value="不可以">不可以</option><option value="不确定">不确定</option></select></div><div class="field"><label class="lab" for="G0_5.5"><span class="fid">5.5</span> 是否咨询过银行及结论</label><textarea id="G0_5.5" name="G0_5.5" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_5.6"><span class="fid">5.6</span> 能否凑5%-10%首期<span class="tip-btn" tabindex="0" aria-label="注释：首期">?<span class="tip-pop"><b>首期</b><br/>买楼时自己先付的部分楼价（未计税、律师费、装修）。</span></span></label><select id="G0_5.6" name="G0_5.6"><option value="">— 请选择 —</option><option value="能">能</option><option value="勉强">勉强</option><option value="不能">不能</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="G0_5.7"><span class="fid">5.7</span> 能否接受利率上升</label><select id="G0_5.7" name="G0_5.7"><option value="">— 请选择 —</option><option value="能">能</option><option value="勉强">勉强</option><option value="不能">不能</option></select></div><div class="field"><label class="lab" for="G0_6.1a"><span class="fid">6.1a</span> 公屋(租)意愿1-5<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><select id="G0_6.1a" name="G0_6.1a"><option value="">— 请选择 —</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><div class="field"><label class="lab" for="G0_6.1b"><span class="fid">6.1b</span> 绿置居意愿1-5<span class="tip-btn" tabindex="0" aria-label="注释：绿置居">?<span class="tip-pop"><b>绿置居</b><br/>绿表置居计划，仅绿表可申请的资助出售房屋，折扣通常比同期居屋更深。</span></span></label><select id="G0_6.1b" name="G0_6.1b"><option value="">— 请选择 —</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><div class="field"><label class="lab" for="G0_6.1c"><span class="fid">6.1c</span> 居屋一手意愿1-5<span class="tip-btn" tabindex="0" aria-label="注释：居屋">?<span class="tip-pop"><b>居屋</b><br/>居者有其屋计划，房委会主力资助出售房屋，绿表与白表都可申请（配额另定）。</span></span></label><select id="G0_6.1c" name="G0_6.1c"><option value="">— 请选择 —</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><div class="field"><label class="lab" for="G0_6.1d"><span class="fid">6.1d</span> 白居二意愿1-5<span class="tip-btn" tabindex="0" aria-label="注释：白居二">?<span class="tip-pop"><b>白居二</b><br/>白表居屋第二市场计划：白表中配额后，可在第二市场购买未补价的资助出售单位。</span></span></label><select id="G0_6.1d" name="G0_6.1d"><option value="">— 请选择 —</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><div class="field"><label class="lab" for="G0_6.1e"><span class="fid">6.1e</span> 私楼意愿1-5</label><select id="G0_6.1e" name="G0_6.1e"><option value="">— 请选择 —</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><div class="field"><label class="lab" for="G0_6.1f"><span class="fid">6.1f</span> 先赚钱等下一批意愿1-5</label><select id="G0_6.1f" name="G0_6.1f"><option value="">— 请选择 —</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div><div class="field"><label class="lab" for="G0_6.2"><span class="fid">6.2</span> 若只能选一个主策略</label><select id="G0_6.2" name="G0_6.2"><option value="">— 请选择 —</option><option value="公屋">公屋</option><option value="绿置居">绿置居</option><option value="居屋一手">居屋一手</option><option value="白居二">白居二</option><option value="私楼">私楼</option><option value="等下一批">等下一批</option><option value="未定">未定</option></select></div><div class="field"><label class="lab" for="G0_6.3"><span class="fid">6.3</span> 接受白居二旧盘<span class="tip-btn" tabindex="0" aria-label="注释：白居二">?<span class="tip-pop"><b>白居二</b><br/>白表居屋第二市场计划：白表中配额后，可在第二市场购买未补价的资助出售单位。</span></span></label><select id="G0_6.3" name="G0_6.3"><option value="">— 请选择 —</option><option value="能">能</option><option value="不能">不能</option><option value="看楼况">看楼况</option></select></div><div class="field"><label class="lab" for="G0_6.4"><span class="fid">6.4</span> 接受2027-28才入伙</label><select id="G0_6.4" name="G0_6.4"><option value="">— 请选择 —</option><option value="能">能</option><option value="不能">不能</option><option value="最好现楼">最好现楼</option></select></div><div class="field"><label class="lab" for="G0_6.5"><span class="fid">6.5</span> 可接受地区</label><textarea id="G0_6.5" name="G0_6.5" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_6.6"><span class="fid">6.6</span> 最少睡房数</label><select id="G0_6.6" name="G0_6.6"><option value="">— 请选择 —</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4+">4+</option></select></div><div class="field"><label class="lab" for="G0_6.7"><span class="fid">6.7</span> 接受约280-400呎</label><select id="G0_6.7" name="G0_6.7"><option value="">— 请选择 —</option><option value="能">能</option><option value="勉强">勉强</option><option value="不能">不能</option></select></div><div class="field"><label class="lab" for="G0_7.1"><span class="fid">7.1</span> 【可跳过】是否知道2025批次时间表</label><select id="G0_7.1" name="G0_7.1"><option value="">— 请选择 —</option><option value="已知">已知</option><option value="不知">不知</option></select></div><div class="field"><label class="lab" for="G0_7.2"><span class="fid">7.2</span> 【可简填】本家庭2025批次状态（已申请可只选对应项）</label><select id="G0_7.2" name="G0_7.2"><option value="">— 请选择 —</option><option value="已申请居屋">已申请居屋</option><option value="已申请绿置居">已申请绿置居</option><option value="已申请白居二">已申请白居二</option><option value="组合申请">组合申请</option><option value="完全没申请">完全没申请</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="G0_7.2b"><span class="fid">7.2b</span> 组合/详情</label><input type="text" id="G0_7.2b" name="G0_7.2b" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_7.3"><span class="fid">7.3</span> 抽签结果是否已查<span class="tip-btn" tabindex="0" aria-label="注释：抽签">?<span class="tip-pop"><b>抽签</b><br/>搅珠：决定选楼先后次序或白居二是否获配额，不是保证一定有楼。</span></span></label><input type="text" id="G0_7.3" name="G0_7.3" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_7.4"><span class="fid">7.4</span> 【已申请可跳过】若未申请原因</label><textarea id="G0_7.4" name="G0_7.4" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_7.5"><span class="fid">7.5</span> 愿意等下一批</label><select id="G0_7.5" name="G0_7.5"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="看情况">看情况</option></select></div><div class="field"><label class="lab" for="G0_7.6"><span class="fid">7.6</span> 过渡住房方案</label><textarea id="G0_7.6" name="G0_7.6" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_7.7"><span class="fid">7.7</span> 等供应 vs 尽快上车</label><select id="G0_7.7" name="G0_7.7"><option value="">— 请选择 —</option><option value="愿多等新盘">愿多等新盘</option><option value="尽快上车二手/私楼">尽快上车二手/私楼</option><option value="平衡">平衡</option></select></div><div class="field"><label class="lab" for="G0_8.1"><span class="fid">8.1</span> 理解10-15年转让限制<span class="tip-btn" tabindex="0" aria-label="注释：转让限制">?<span class="tip-pop"><b>转让限制</b><br/>购入资助房屋后一段时间内，不能自由在公开市场转售；只能按规定走第二市场或先补价。年期因批次而异（如10/15年）。</span></span></label><select id="G0_8.1" name="G0_8.1"><option value="">— 请选择 —</option><option value="理解">理解</option><option value="一知半解">一知半解</option><option value="不理解">不理解</option></select></div><div class="field"><label class="lab" for="G0_8.2"><span class="fid">8.2</span> 计划持有多久</label><select id="G0_8.2" name="G0_8.2"><option value="">— 请选择 —</option><option value="&lt;5年">&lt;5年</option><option value="5-10年">5-10年</option><option value="10-20年">10-20年</option><option value="终老自住">终老自住</option></select></div><div class="field"><label class="lab" for="G0_8.3"><span class="fid">8.3</span> 接受折扣=未来补价比例<span class="tip-btn" tabindex="0" aria-label="注释：补价">?<span class="tip-pop"><b>补价</b><br/>补地价：把当年购入折扣按现时市值比例缴回，以解除公开市场转让限制。公式大致=现时市值×原折扣率。</span></span><span class="tip-btn" tabindex="0" aria-label="注释：折扣">?<span class="tip-pop"><b>折扣</b><br/>相对市值的减价比例。折扣越深，将来补价占现时市值的比例通常越高。</span></span></label><select id="G0_8.3" name="G0_8.3"><option value="">— 请选择 —</option><option value="接受">接受</option><option value="勉强">勉强</option><option value="不接受">不接受</option></select></div><div class="field"><label class="lab" for="G0_8.4"><span class="fid">8.4</span> 谁强烈反对转售限制</label><input type="text" id="G0_8.4" name="G0_8.4" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_9.1"><span class="fid">9.1</span> 谁可能超资产/入息</label><input type="text" id="G0_9.1" name="G0_9.1" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_9.2"><span class="fid">9.2</span> 特殊法律/纠纷情况</label><textarea id="G0_9.2" name="G0_9.2" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_9.3"><span class="fid">9.3</span> 长期内地工作短住香港的人</label><input type="text" id="G0_9.3" name="G0_9.3" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_9.4"><span class="fid">9.4</span> 谁无法来港选楼签约<span class="tip-btn" tabindex="0" aria-label="注释：选楼">?<span class="tip-pop"><b>选楼</b><br/>按次序号到指定中心选择具体单位，通常当日签买卖协议并付订金。</span></span></label><input type="text" id="G0_9.4" name="G0_9.4" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_10.1"><span class="fid">10.1</span> 家庭决策者</label><input type="text" id="G0_10.1" name="G0_10.1" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_10.2"><span class="fid">10.2</span> 置业目标排序</label><textarea id="G0_10.2" name="G0_10.2" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_10.3"><span class="fid">10.3</span> 绝对底线</label><textarea id="G0_10.3" name="G0_10.3" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_10.4"><span class="fid">10.4</span> 希望输出形式</label><input type="text" id="G0_10.4" name="G0_10.4" placeholder="请填写"/></div><div class="field"><label class="lab" for="G0_10.5"><span class="fid">10.5</span> 其他补充</label><textarea id="G0_10.5" name="G0_10.5" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="G0_11.1"><span class="fid">11.1</span> 确认真实尽知</label><select id="G0_11.1" name="G0_11.1"><option value="">— 请选择 —</option><option value="同意">同意</option></select></div><div class="field"><label class="lab" for="G0_11.2"><span class="fid">11.2</span> 确认非法律意见</label><select id="G0_11.2" name="G0_11.2"><option value="">— 请选择 —</option><option value="同意">同意</option></select></div><div class="actions"><button type="button" class="btn save" data-save-cloud="G0">保存并提交云端</button><span class="saved" id="saved-G0"></span></div></section><section class="panel" id="panel-P1" hidden><h2>P1 父亲</h2><p class="note">本页仅由 <strong>父亲</strong> 填写。金额为港元。不知道请选「不清楚」或写「不清楚」。</p><div class="field"><label class="lab" for="P1_A1"><span class="fid">A1</span> 角色确认</label><select id="P1_A1" name="P1_A1"><option value="">— 请选择 —</option><option value="父亲">父亲</option><option value="母亲">母亲</option><option value="本人">本人</option><option value="姐姐">姐姐</option><option value="弟弟">弟弟</option></select></div><div class="field"><label class="lab" for="P1_A2"><span class="fid">A2</span> 姓名或称呼</label><input type="text" id="P1_A2" name="P1_A2" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_A3"><span class="fid">A3</span> 性别</label><select id="P1_A3" name="P1_A3"><option value="">— 请选择 —</option><option value="男">男</option><option value="女">女</option><option value="不便透露">不便透露</option></select></div><div class="field"><label class="lab" for="P1_A4"><span class="fid">A4</span> 出生日期</label><input type="date" id="P1_A4" name="P1_A4"/></div><div class="field"><label class="lab" for="P1_A5"><span class="fid">A5</span> 周岁</label><input type="number" id="P1_A5" name="P1_A5" min="0" step="1"/></div><div class="field"><label class="lab" for="P1_A6"><span class="fid">A6</span> 香港身份证类型</label><select id="P1_A6" name="P1_A6"><option value="">— 请选择 —</option><option value="永久性居民身份证">永久性居民身份证</option><option value="居民身份证(非永久)">居民身份证(非永久)</option><option value="没有">没有</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_A7"><span class="fid">A7</span> 是否香港永久性居民</label><select id="P1_A7" name="P1_A7"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_A8"><span class="fid">A8</span> 入境权状况<span class="tip-btn" tabindex="0" aria-label="注释：入境权">?<span class="tip-pop"><b>入境权</b><br/>有权在香港入境及逗留。通常可有逗留期限，但不能有其他逗留条件（以须知为准）。</span></span></label><select id="P1_A8" name="P1_A8"><option value="">— 请选择 —</option><option value="有权入境(仅期限或无条件)">有权入境(仅期限或无条件)</option><option value="有其他逗留条件">有其他逗留条件</option><option value="无权入境">无权入境</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_A8b"><span class="fid">A8b</span> 逗留条件说明</label><input type="text" id="P1_A8b" name="P1_A8b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_A9"><span class="fid">A9</span> 截至2026-05-20居港满7年<span class="tip-btn" tabindex="0" aria-label="注释：居港满7年">?<span class="tip-pop"><b>居港满7年</b><br/>白表申请人常见要求：在申请截止日已在香港通常居住满7年。绿表规则不同。</span></span></label><select id="P1_A9" name="P1_A9"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_A9b"><span class="fid">A9b</span> 约已居港几年</label><input type="text" id="P1_A9b" name="P1_A9b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_A10"><span class="fid">A10</span> 目前主要居住地</label><select id="P1_A10" name="P1_A10"><option value="">— 请选择 —</option><option value="香港公屋">香港公屋</option><option value="香港私人租住">香港私人租住</option><option value="香港私人自置">香港私人自置</option><option value="香港居屋/资助盘">香港居屋/资助盘</option><option value="内地">内地</option><option value="其他">其他</option><option value="两地居住">两地居住</option></select></div><div class="field"><label class="lab" for="P1_A10b"><span class="fid">A10b</span> 居住详情</label><input type="text" id="P1_A10b" name="P1_A10b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_A11"><span class="fid">A11</span> 香港分区</label><select id="P1_A11" name="P1_A11"><option value="">— 请选择 —</option><option value="港岛">港岛</option><option value="九龙">九龙</option><option value="新界东">新界东</option><option value="新界西">新界西</option><option value="离岛">离岛</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_A12"><span class="fid">A12</span> 婚姻状况</label><select id="P1_A12" name="P1_A12"><option value="">— 请选择 —</option><option value="未婚">未婚</option><option value="已婚">已婚</option><option value="已离婚">已离婚</option><option value="丧偶">丧偶</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P1_A12b"><span class="fid">A12b</span> 离婚是否有绝对判令<span class="tip-btn" tabindex="0" aria-label="注释：绝对判令">?<span class="tip-pop"><b>绝对判令</b><br/>离婚程序完成的法院最终判令。未取得前婚姻状况认定可能不同。</span></span></label><select id="P1_A12b" name="P1_A12b"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="办理中">办理中</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_A13"><span class="fid">A13</span> 配偶是否列入同一申请表</label><select id="P1_A13" name="P1_A13"><option value="">— 请选择 —</option><option value="会列入">会列入</option><option value="不列入">不列入</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_A14"><span class="fid">A14</span> 未满18岁子女</label><textarea id="P1_A14" name="P1_A14" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_A15"><span class="fid">A15</span> 怀孕≥16周</label><select id="P1_A15" name="P1_A15"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_B16"><span class="fid">B16</span> 在申请中的角色(可写多选)</label><input type="text" id="P1_B16" name="P1_B16" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_B17"><span class="fid">B17</span> 愿做业主/联名并自住<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P1_B17" name="P1_B17"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="看情况">看情况</option></select></div><div class="field"><label class="lab" for="P1_B18"><span class="fid">B18</span> 愿与父母同住新居</label><select id="P1_B18" name="P1_B18"><option value="">— 请选择 —</option><option value="愿意长期">愿意长期</option><option value="短期可以">短期可以</option><option value="不愿意">不愿意</option><option value="视乎面积">视乎面积</option></select></div><div class="field"><label class="lab" for="P1_B19"><span class="fid">B19</span> 认为合理的家庭组合</label><select id="P1_B19" name="P1_B19"><option value="">— 请选择 —</option><option value="父母+全部子女一表">父母+全部子女一表</option><option value="父母单独子女另表">父母单独子女另表</option><option value="父母+部分子女">父母+部分子女</option><option value="一人申请">一人申请</option><option value="需建议">需建议</option></select></div><div class="field"><label class="lab" for="P1_B20"><span class="fid">B20</span> 过去2年是否列入他人申请</label><input type="text" id="P1_B20" name="P1_B20" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_C21"><span class="fid">C21</span> 曾购资助房屋(HOS/GSH/TPS/第二市场/贷款/房协/市建局等)<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><textarea id="P1_C21" name="P1_C21" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_C22"><span class="fid">C22</span> 若曾拥有是否已售及年份</label><input type="text" id="P1_C22" name="P1_C22" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_C23"><span class="fid">C23</span> 是否关键成员2年内删户</label><select id="P1_C23" name="P1_C23"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_C24"><span class="fid">C24</span> 是否公屋租户(名字在租约)<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><select id="P1_C24" name="P1_C24"><option value="">— 请选择 —</option><option value="是户主/联名租户">是户主/联名租户</option><option value="否但是家庭成员">否但是家庭成员</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_C24b"><span class="fid">C24b</span> 屋邨与入伙年</label><input type="text" id="P1_C24b" name="P1_C24b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_C25"><span class="fid">C25</span> 持有有效GFC<span class="tip-btn" tabindex="0" aria-label="注释：GFC">?<span class="tip-pop"><b>GFC</b><br/>绿表资格证明书（Green Form Certificate），非公屋户但符合指定绿表类别者持有，可按绿表申请。</span></span></label><select id="P1_C25" name="P1_C25"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="申请中">申请中</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_C26"><span class="fid">C26</span> 是否轮候公屋<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><input type="text" id="P1_C26" name="P1_C26" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_C27"><span class="fid">C27</span> 扣分制分数<span class="tip-btn" tabindex="0" aria-label="注释：扣分制">?<span class="tip-pop"><b>扣分制</b><br/>公屋不当行为扣分制度。高分可能影响继续租住或申请资格。</span></span></label><select id="P1_C27" name="P1_C27"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-15">1-15</option><option value="≥16">≥16</option><option value="不适用">不适用</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_C28"><span class="fid">C28</span> NTQ或租约违约<span class="tip-btn" tabindex="0" aria-label="注释：NTQ">?<span class="tip-pop"><b>NTQ</b><br/>Notice to Quit 迁出通知书。租约终止相关文件。</span></span></label><select id="P1_C28" name="P1_C28"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_D29"><span class="fid">D29</span> 自2024-05-21起拥有香港住宅</label><select id="P1_D29" name="P1_D29"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_D29b"><span class="fid">D29b</span> 物业类型详情</label><textarea id="P1_D29b" name="P1_D29b" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_D30"><span class="fid">D30</span> 签署过香港住宅买卖协议</label><select id="P1_D30" name="P1_D30"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_D31"><span class="fid">D31</span> 公司持股&gt;50%拥香港住宅</label><select id="P1_D31" name="P1_D31"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_D32"><span class="fid">D32</span> 遗产/联权等</label><select id="P1_D32" name="P1_D32"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_D33"><span class="fid">D33</span> 若曾拥有转让日期</label><input type="text" id="P1_D33" name="P1_D33" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_E34"><span class="fid">E34</span> 内地房产土地</label><textarea id="P1_E34" name="P1_E34" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_E35"><span class="fid">E35</span> 其他国家房产</label><input type="text" id="P1_E35" name="P1_E35" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_E36"><span class="fid">E36</span> 车辆</label><input type="text" id="P1_E36" name="P1_E36" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_E37"><span class="fid">E37</span> 投资市值约<span class="tip-btn" tabindex="0" aria-label="注释：市值">?<span class="tip-pop"><b>市值</b><br/>估值反映的市场价值。补价、印花税都可能用市值而非你付的折扣价。</span></span></label><input type="text" id="P1_E37" name="P1_E37" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_E38"><span class="fid">E38</span> 存款现金约</label><input type="text" id="P1_E38" name="P1_E38" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_E39"><span class="fid">E39</span> 强积金情况<span class="tip-btn" tabindex="0" aria-label="注释：强积金">?<span class="tip-pop"><b>强积金</b><br/>MPF。强制供款可有限度从入息扣减；自愿性供款通常不能扣。</span></span></label><input type="text" id="P1_E39" name="P1_E39" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_E40"><span class="fid">E40</span> 借出款项</label><input type="text" id="P1_E40" name="P1_E40" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_E41"><span class="fid">E41</span> 生意股权净值</label><input type="text" id="P1_E41" name="P1_E41" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_E42"><span class="fid">E42</span> 个人净资产区间<span class="tip-btn" tabindex="0" aria-label="注释：净资产">?<span class="tip-pop"><b>净资产</b><br/>资产减去负债后的净值。白表审查看家庭总净资产是否超限。</span></span></label><select id="P1_E42" name="P1_E42"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-61.5万">30-61.5万</option><option value="61.5-123万">61.5-123万</option><option value="123-300万">123-300万</option><option value="&gt;300万">&gt;300万</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_F43"><span class="fid">F43</span> 就业状态</label><select id="P1_F43" name="P1_F43"><option value="">— 请选择 —</option><option value="全职">全职</option><option value="兼职">兼职</option><option value="自雇">自雇</option><option value="无业求职">无业求职</option><option value="无业暂不求职">无业暂不求职</option><option value="学生">学生</option><option value="家务">家务</option><option value="退休">退休</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P1_F44"><span class="fid">F44</span> 无业详情与援助</label><textarea id="P1_F44" name="P1_F44" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_F45"><span class="fid">F45</span> 过去12月收入类型</label><textarea id="P1_F45" name="P1_F45" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_F46"><span class="fid">F46</span> 过去6月平均月收入</label><select id="P1_F46" name="P1_F46"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-5000">1-5000</option><option value="5001-10000">5001-10000</option><option value="10001-20000">10001-20000</option><option value="20001-30000">20001-30000</option><option value="30001-60000">30001-60000</option><option value="&gt;60000">&gt;60000</option><option value="波动大">波动大</option></select></div><div class="field"><label class="lab" for="P1_F47"><span class="fid">F47</span> 雇主提供住所</label><select id="P1_F47" name="P1_F47"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_F48"><span class="fid">F48</span> 未来12月收入预期</label><textarea id="P1_F48" name="P1_F48" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_F49"><span class="fid">F49</span> 亲属每月资助</label><input type="text" id="P1_F49" name="P1_F49" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_F50"><span class="fid">F50</span> 入息证明准备度</label><select id="P1_F50" name="P1_F50"><option value="">— 请选择 —</option><option value="完整">完整</option><option value="仅银行流水">仅银行流水</option><option value="几乎没有">几乎没有</option><option value="无收入不适用">无收入不适用</option></select></div><div class="field"><label class="lab" for="P1_G51"><span class="fid">G51</span> 信贷状况</label><select id="P1_G51" name="P1_G51"><option value="">— 请选择 —</option><option value="正常">正常</option><option value="有逾期">有逾期</option><option value="曾破产/IVA">曾破产/IVA</option><option value="无信贷纪录">无信贷纪录</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_G52"><span class="fid">G52</span> 破产状态<span class="tip-btn" tabindex="0" aria-label="注释：破产">?<span class="tip-pop"><b>破产</b><br/>法律上的破产程序。可能影响按揭批核与资产状况。</span></span></label><select id="P1_G52" name="P1_G52"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P1_G53"><span class="fid">G53</span> 现有贷款月供</label><input type="text" id="P1_G53" name="P1_G53" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_G54"><span class="fid">G54</span> 愿做按揭主贷人</label><select id="P1_G54" name="P1_G54"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="可担保">可担保</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_G55"><span class="fid">G55</span> 个人可动用首期<span class="tip-btn" tabindex="0" aria-label="注释：首期">?<span class="tip-pop"><b>首期</b><br/>买楼时自己先付的部分楼价（未计税、律师费、装修）。</span></span></label><select id="P1_G55" name="P1_G55"><option value="">— 请选择 —</option><option value="0">0</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-50万">30-50万</option><option value="50-100万">50-100万</option><option value="&gt;100万">&gt;100万</option></select></div><div class="field"><label class="lab" for="P1_H56"><span class="fid">H56</span> 可接受地区</label><textarea id="P1_H56" name="P1_H56" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_H57"><span class="fid">H57</span> 最小实用面积<span class="tip-btn" tabindex="0" aria-label="注释：实用面积">?<span class="tip-pop"><b>实用面积</b><br/>单位实际可用面积（一般小于建筑面积），售楼书会列明。</span></span></label><input type="text" id="P1_H57" name="P1_H57" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_H58"><span class="fid">H58</span> 第二市场最高楼龄<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><select id="P1_H58" name="P1_H58"><option value="">— 请选择 —</option><option value="只要新居屋">只要新居屋</option><option value="≤10年">≤10年</option><option value="≤20年">≤20年</option><option value="≤30年">≤30年</option><option value="不限">不限</option></select></div><div class="field"><label class="lab" for="P1_H59"><span class="fid">H59</span> 接受未落成2027-28<span class="tip-btn" tabindex="0" aria-label="注释：未落成">?<span class="tip-pop"><b>未落成</b><br/>楼花：建成前出售，入伙要等落成（如2027–2028），期间需自行安排住所。</span></span></label><select id="P1_H59" name="P1_H59"><option value="">— 请选择 —</option><option value="能">能</option><option value="不能">不能</option><option value="最好现楼">最好现楼</option></select></div><div class="field"><label class="lab" for="P1_H60"><span class="fid">H60</span> 接受10-15年转售限制</label><select id="P1_H60" name="P1_H60"><option value="">— 请选择 —</option><option value="能接受">能接受</option><option value="勉强">勉强</option><option value="不能接受倾向私楼">不能接受倾向私楼</option></select></div><div class="field"><label class="lab" for="P1_H61"><span class="fid">H61</span> 接受必须自住规则<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P1_H61" name="P1_H61"><option value="">— 请选择 —</option><option value="接受">接受</option><option value="有顾虑">有顾虑</option><option value="不接受">不接受</option></select></div><div class="field"><label class="lab" for="P1_H62"><span class="fid">H62</span> 装修预算</label><select id="P1_H62" name="P1_H62"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-20万">10-20万</option><option value="20-40万">20-40万</option><option value="&gt;40万">&gt;40万</option><option value="无预算">无预算</option></select></div><div class="field"><label class="lab" for="P1_I63"><span class="fid">I63</span> 有香港身份证正本</label><select id="P1_I63" name="P1_I63"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P1_I64"><span class="fid">I64</span> 出生证明/护照等</label><select id="P1_I64" name="P1_I64"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_I65"><span class="fid">I65</span> 婚姻文件</label><select id="P1_I65" name="P1_I65"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P1_I66"><span class="fid">I66</span> 最近报税表</label><select id="P1_I66" name="P1_I66"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P1_I67"><span class="fid">I67</span> 近6月银行月结</label><select id="P1_I67" name="P1_I67"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P1_J68"><span class="fid">J68</span> 特殊单位需要</label><input type="text" id="P1_J68" name="P1_J68" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_J69"><span class="fid">J69</span> 其他可能影响资格情况</label><input type="text" id="P1_J69" name="P1_J69" placeholder="请填写"/></div><div class="field"><label class="lab" for="P1_J70"><span class="fid">J70</span> 最担心三件事</label><textarea id="P1_J70" name="P1_J70" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_J71"><span class="fid">J71</span> 置业目标</label><textarea id="P1_J71" name="P1_J71" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P1_J72"><span class="fid">J72</span> 其他必须知道的事</label><textarea id="P1_J72" name="P1_J72" rows="3" placeholder="请填写"></textarea></div><div class="actions"><button type="button" class="btn save" data-save-cloud="P1">保存并提交云端</button><span class="saved" id="saved-P1"></span></div></section><section class="panel" id="panel-P2" hidden><h2>P2 母亲</h2><p class="note">本页仅由 <strong>母亲</strong> 填写。金额为港元。不知道请选「不清楚」或写「不清楚」。</p><div class="field"><label class="lab" for="P2_A1"><span class="fid">A1</span> 角色确认</label><select id="P2_A1" name="P2_A1"><option value="">— 请选择 —</option><option value="父亲">父亲</option><option value="母亲">母亲</option><option value="本人">本人</option><option value="姐姐">姐姐</option><option value="弟弟">弟弟</option></select></div><div class="field"><label class="lab" for="P2_A2"><span class="fid">A2</span> 姓名或称呼</label><input type="text" id="P2_A2" name="P2_A2" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_A3"><span class="fid">A3</span> 性别</label><select id="P2_A3" name="P2_A3"><option value="">— 请选择 —</option><option value="男">男</option><option value="女">女</option><option value="不便透露">不便透露</option></select></div><div class="field"><label class="lab" for="P2_A4"><span class="fid">A4</span> 出生日期</label><input type="date" id="P2_A4" name="P2_A4"/></div><div class="field"><label class="lab" for="P2_A5"><span class="fid">A5</span> 周岁</label><input type="number" id="P2_A5" name="P2_A5" min="0" step="1"/></div><div class="field"><label class="lab" for="P2_A6"><span class="fid">A6</span> 香港身份证类型</label><select id="P2_A6" name="P2_A6"><option value="">— 请选择 —</option><option value="永久性居民身份证">永久性居民身份证</option><option value="居民身份证(非永久)">居民身份证(非永久)</option><option value="没有">没有</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_A7"><span class="fid">A7</span> 是否香港永久性居民</label><select id="P2_A7" name="P2_A7"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_A8"><span class="fid">A8</span> 入境权状况<span class="tip-btn" tabindex="0" aria-label="注释：入境权">?<span class="tip-pop"><b>入境权</b><br/>有权在香港入境及逗留。通常可有逗留期限，但不能有其他逗留条件（以须知为准）。</span></span></label><select id="P2_A8" name="P2_A8"><option value="">— 请选择 —</option><option value="有权入境(仅期限或无条件)">有权入境(仅期限或无条件)</option><option value="有其他逗留条件">有其他逗留条件</option><option value="无权入境">无权入境</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_A8b"><span class="fid">A8b</span> 逗留条件说明</label><input type="text" id="P2_A8b" name="P2_A8b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_A9"><span class="fid">A9</span> 截至2026-05-20居港满7年<span class="tip-btn" tabindex="0" aria-label="注释：居港满7年">?<span class="tip-pop"><b>居港满7年</b><br/>白表申请人常见要求：在申请截止日已在香港通常居住满7年。绿表规则不同。</span></span></label><select id="P2_A9" name="P2_A9"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_A9b"><span class="fid">A9b</span> 约已居港几年</label><input type="text" id="P2_A9b" name="P2_A9b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_A10"><span class="fid">A10</span> 目前主要居住地</label><select id="P2_A10" name="P2_A10"><option value="">— 请选择 —</option><option value="香港公屋">香港公屋</option><option value="香港私人租住">香港私人租住</option><option value="香港私人自置">香港私人自置</option><option value="香港居屋/资助盘">香港居屋/资助盘</option><option value="内地">内地</option><option value="其他">其他</option><option value="两地居住">两地居住</option></select></div><div class="field"><label class="lab" for="P2_A10b"><span class="fid">A10b</span> 居住详情</label><input type="text" id="P2_A10b" name="P2_A10b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_A11"><span class="fid">A11</span> 香港分区</label><select id="P2_A11" name="P2_A11"><option value="">— 请选择 —</option><option value="港岛">港岛</option><option value="九龙">九龙</option><option value="新界东">新界东</option><option value="新界西">新界西</option><option value="离岛">离岛</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_A12"><span class="fid">A12</span> 婚姻状况</label><select id="P2_A12" name="P2_A12"><option value="">— 请选择 —</option><option value="未婚">未婚</option><option value="已婚">已婚</option><option value="已离婚">已离婚</option><option value="丧偶">丧偶</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P2_A12b"><span class="fid">A12b</span> 离婚是否有绝对判令<span class="tip-btn" tabindex="0" aria-label="注释：绝对判令">?<span class="tip-pop"><b>绝对判令</b><br/>离婚程序完成的法院最终判令。未取得前婚姻状况认定可能不同。</span></span></label><select id="P2_A12b" name="P2_A12b"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="办理中">办理中</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_A13"><span class="fid">A13</span> 配偶是否列入同一申请表</label><select id="P2_A13" name="P2_A13"><option value="">— 请选择 —</option><option value="会列入">会列入</option><option value="不列入">不列入</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_A14"><span class="fid">A14</span> 未满18岁子女</label><textarea id="P2_A14" name="P2_A14" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_A15"><span class="fid">A15</span> 怀孕≥16周</label><select id="P2_A15" name="P2_A15"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_B16"><span class="fid">B16</span> 在申请中的角色(可写多选)</label><input type="text" id="P2_B16" name="P2_B16" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_B17"><span class="fid">B17</span> 愿做业主/联名并自住<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P2_B17" name="P2_B17"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="看情况">看情况</option></select></div><div class="field"><label class="lab" for="P2_B18"><span class="fid">B18</span> 愿与父母同住新居</label><select id="P2_B18" name="P2_B18"><option value="">— 请选择 —</option><option value="愿意长期">愿意长期</option><option value="短期可以">短期可以</option><option value="不愿意">不愿意</option><option value="视乎面积">视乎面积</option></select></div><div class="field"><label class="lab" for="P2_B19"><span class="fid">B19</span> 认为合理的家庭组合</label><select id="P2_B19" name="P2_B19"><option value="">— 请选择 —</option><option value="父母+全部子女一表">父母+全部子女一表</option><option value="父母单独子女另表">父母单独子女另表</option><option value="父母+部分子女">父母+部分子女</option><option value="一人申请">一人申请</option><option value="需建议">需建议</option></select></div><div class="field"><label class="lab" for="P2_B20"><span class="fid">B20</span> 过去2年是否列入他人申请</label><input type="text" id="P2_B20" name="P2_B20" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_C21"><span class="fid">C21</span> 曾购资助房屋(HOS/GSH/TPS/第二市场/贷款/房协/市建局等)<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><textarea id="P2_C21" name="P2_C21" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_C22"><span class="fid">C22</span> 若曾拥有是否已售及年份</label><input type="text" id="P2_C22" name="P2_C22" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_C23"><span class="fid">C23</span> 是否关键成员2年内删户</label><select id="P2_C23" name="P2_C23"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_C24"><span class="fid">C24</span> 是否公屋租户(名字在租约)<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><select id="P2_C24" name="P2_C24"><option value="">— 请选择 —</option><option value="是户主/联名租户">是户主/联名租户</option><option value="否但是家庭成员">否但是家庭成员</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_C24b"><span class="fid">C24b</span> 屋邨与入伙年</label><input type="text" id="P2_C24b" name="P2_C24b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_C25"><span class="fid">C25</span> 持有有效GFC<span class="tip-btn" tabindex="0" aria-label="注释：GFC">?<span class="tip-pop"><b>GFC</b><br/>绿表资格证明书（Green Form Certificate），非公屋户但符合指定绿表类别者持有，可按绿表申请。</span></span></label><select id="P2_C25" name="P2_C25"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="申请中">申请中</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_C26"><span class="fid">C26</span> 是否轮候公屋<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><input type="text" id="P2_C26" name="P2_C26" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_C27"><span class="fid">C27</span> 扣分制分数<span class="tip-btn" tabindex="0" aria-label="注释：扣分制">?<span class="tip-pop"><b>扣分制</b><br/>公屋不当行为扣分制度。高分可能影响继续租住或申请资格。</span></span></label><select id="P2_C27" name="P2_C27"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-15">1-15</option><option value="≥16">≥16</option><option value="不适用">不适用</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_C28"><span class="fid">C28</span> NTQ或租约违约<span class="tip-btn" tabindex="0" aria-label="注释：NTQ">?<span class="tip-pop"><b>NTQ</b><br/>Notice to Quit 迁出通知书。租约终止相关文件。</span></span></label><select id="P2_C28" name="P2_C28"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_D29"><span class="fid">D29</span> 自2024-05-21起拥有香港住宅</label><select id="P2_D29" name="P2_D29"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_D29b"><span class="fid">D29b</span> 物业类型详情</label><textarea id="P2_D29b" name="P2_D29b" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_D30"><span class="fid">D30</span> 签署过香港住宅买卖协议</label><select id="P2_D30" name="P2_D30"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_D31"><span class="fid">D31</span> 公司持股&gt;50%拥香港住宅</label><select id="P2_D31" name="P2_D31"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_D32"><span class="fid">D32</span> 遗产/联权等</label><select id="P2_D32" name="P2_D32"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_D33"><span class="fid">D33</span> 若曾拥有转让日期</label><input type="text" id="P2_D33" name="P2_D33" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_E34"><span class="fid">E34</span> 内地房产土地</label><textarea id="P2_E34" name="P2_E34" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_E35"><span class="fid">E35</span> 其他国家房产</label><input type="text" id="P2_E35" name="P2_E35" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_E36"><span class="fid">E36</span> 车辆</label><input type="text" id="P2_E36" name="P2_E36" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_E37"><span class="fid">E37</span> 投资市值约<span class="tip-btn" tabindex="0" aria-label="注释：市值">?<span class="tip-pop"><b>市值</b><br/>估值反映的市场价值。补价、印花税都可能用市值而非你付的折扣价。</span></span></label><input type="text" id="P2_E37" name="P2_E37" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_E38"><span class="fid">E38</span> 存款现金约</label><input type="text" id="P2_E38" name="P2_E38" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_E39"><span class="fid">E39</span> 强积金情况<span class="tip-btn" tabindex="0" aria-label="注释：强积金">?<span class="tip-pop"><b>强积金</b><br/>MPF。强制供款可有限度从入息扣减；自愿性供款通常不能扣。</span></span></label><input type="text" id="P2_E39" name="P2_E39" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_E40"><span class="fid">E40</span> 借出款项</label><input type="text" id="P2_E40" name="P2_E40" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_E41"><span class="fid">E41</span> 生意股权净值</label><input type="text" id="P2_E41" name="P2_E41" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_E42"><span class="fid">E42</span> 个人净资产区间<span class="tip-btn" tabindex="0" aria-label="注释：净资产">?<span class="tip-pop"><b>净资产</b><br/>资产减去负债后的净值。白表审查看家庭总净资产是否超限。</span></span></label><select id="P2_E42" name="P2_E42"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-61.5万">30-61.5万</option><option value="61.5-123万">61.5-123万</option><option value="123-300万">123-300万</option><option value="&gt;300万">&gt;300万</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_F43"><span class="fid">F43</span> 就业状态</label><select id="P2_F43" name="P2_F43"><option value="">— 请选择 —</option><option value="全职">全职</option><option value="兼职">兼职</option><option value="自雇">自雇</option><option value="无业求职">无业求职</option><option value="无业暂不求职">无业暂不求职</option><option value="学生">学生</option><option value="家务">家务</option><option value="退休">退休</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P2_F44"><span class="fid">F44</span> 无业详情与援助</label><textarea id="P2_F44" name="P2_F44" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_F45"><span class="fid">F45</span> 过去12月收入类型</label><textarea id="P2_F45" name="P2_F45" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_F46"><span class="fid">F46</span> 过去6月平均月收入</label><select id="P2_F46" name="P2_F46"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-5000">1-5000</option><option value="5001-10000">5001-10000</option><option value="10001-20000">10001-20000</option><option value="20001-30000">20001-30000</option><option value="30001-60000">30001-60000</option><option value="&gt;60000">&gt;60000</option><option value="波动大">波动大</option></select></div><div class="field"><label class="lab" for="P2_F47"><span class="fid">F47</span> 雇主提供住所</label><select id="P2_F47" name="P2_F47"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_F48"><span class="fid">F48</span> 未来12月收入预期</label><textarea id="P2_F48" name="P2_F48" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_F49"><span class="fid">F49</span> 亲属每月资助</label><input type="text" id="P2_F49" name="P2_F49" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_F50"><span class="fid">F50</span> 入息证明准备度</label><select id="P2_F50" name="P2_F50"><option value="">— 请选择 —</option><option value="完整">完整</option><option value="仅银行流水">仅银行流水</option><option value="几乎没有">几乎没有</option><option value="无收入不适用">无收入不适用</option></select></div><div class="field"><label class="lab" for="P2_G51"><span class="fid">G51</span> 信贷状况</label><select id="P2_G51" name="P2_G51"><option value="">— 请选择 —</option><option value="正常">正常</option><option value="有逾期">有逾期</option><option value="曾破产/IVA">曾破产/IVA</option><option value="无信贷纪录">无信贷纪录</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_G52"><span class="fid">G52</span> 破产状态<span class="tip-btn" tabindex="0" aria-label="注释：破产">?<span class="tip-pop"><b>破产</b><br/>法律上的破产程序。可能影响按揭批核与资产状况。</span></span></label><select id="P2_G52" name="P2_G52"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P2_G53"><span class="fid">G53</span> 现有贷款月供</label><input type="text" id="P2_G53" name="P2_G53" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_G54"><span class="fid">G54</span> 愿做按揭主贷人</label><select id="P2_G54" name="P2_G54"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="可担保">可担保</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_G55"><span class="fid">G55</span> 个人可动用首期<span class="tip-btn" tabindex="0" aria-label="注释：首期">?<span class="tip-pop"><b>首期</b><br/>买楼时自己先付的部分楼价（未计税、律师费、装修）。</span></span></label><select id="P2_G55" name="P2_G55"><option value="">— 请选择 —</option><option value="0">0</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-50万">30-50万</option><option value="50-100万">50-100万</option><option value="&gt;100万">&gt;100万</option></select></div><div class="field"><label class="lab" for="P2_H56"><span class="fid">H56</span> 可接受地区</label><textarea id="P2_H56" name="P2_H56" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_H57"><span class="fid">H57</span> 最小实用面积<span class="tip-btn" tabindex="0" aria-label="注释：实用面积">?<span class="tip-pop"><b>实用面积</b><br/>单位实际可用面积（一般小于建筑面积），售楼书会列明。</span></span></label><input type="text" id="P2_H57" name="P2_H57" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_H58"><span class="fid">H58</span> 第二市场最高楼龄<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><select id="P2_H58" name="P2_H58"><option value="">— 请选择 —</option><option value="只要新居屋">只要新居屋</option><option value="≤10年">≤10年</option><option value="≤20年">≤20年</option><option value="≤30年">≤30年</option><option value="不限">不限</option></select></div><div class="field"><label class="lab" for="P2_H59"><span class="fid">H59</span> 接受未落成2027-28<span class="tip-btn" tabindex="0" aria-label="注释：未落成">?<span class="tip-pop"><b>未落成</b><br/>楼花：建成前出售，入伙要等落成（如2027–2028），期间需自行安排住所。</span></span></label><select id="P2_H59" name="P2_H59"><option value="">— 请选择 —</option><option value="能">能</option><option value="不能">不能</option><option value="最好现楼">最好现楼</option></select></div><div class="field"><label class="lab" for="P2_H60"><span class="fid">H60</span> 接受10-15年转售限制</label><select id="P2_H60" name="P2_H60"><option value="">— 请选择 —</option><option value="能接受">能接受</option><option value="勉强">勉强</option><option value="不能接受倾向私楼">不能接受倾向私楼</option></select></div><div class="field"><label class="lab" for="P2_H61"><span class="fid">H61</span> 接受必须自住规则<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P2_H61" name="P2_H61"><option value="">— 请选择 —</option><option value="接受">接受</option><option value="有顾虑">有顾虑</option><option value="不接受">不接受</option></select></div><div class="field"><label class="lab" for="P2_H62"><span class="fid">H62</span> 装修预算</label><select id="P2_H62" name="P2_H62"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-20万">10-20万</option><option value="20-40万">20-40万</option><option value="&gt;40万">&gt;40万</option><option value="无预算">无预算</option></select></div><div class="field"><label class="lab" for="P2_I63"><span class="fid">I63</span> 有香港身份证正本</label><select id="P2_I63" name="P2_I63"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P2_I64"><span class="fid">I64</span> 出生证明/护照等</label><select id="P2_I64" name="P2_I64"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_I65"><span class="fid">I65</span> 婚姻文件</label><select id="P2_I65" name="P2_I65"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P2_I66"><span class="fid">I66</span> 最近报税表</label><select id="P2_I66" name="P2_I66"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P2_I67"><span class="fid">I67</span> 近6月银行月结</label><select id="P2_I67" name="P2_I67"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P2_J68"><span class="fid">J68</span> 特殊单位需要</label><input type="text" id="P2_J68" name="P2_J68" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_J69"><span class="fid">J69</span> 其他可能影响资格情况</label><input type="text" id="P2_J69" name="P2_J69" placeholder="请填写"/></div><div class="field"><label class="lab" for="P2_J70"><span class="fid">J70</span> 最担心三件事</label><textarea id="P2_J70" name="P2_J70" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_J71"><span class="fid">J71</span> 置业目标</label><textarea id="P2_J71" name="P2_J71" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P2_J72"><span class="fid">J72</span> 其他必须知道的事</label><textarea id="P2_J72" name="P2_J72" rows="3" placeholder="请填写"></textarea></div><div class="actions"><button type="button" class="btn save" data-save-cloud="P2">保存并提交云端</button><span class="saved" id="saved-P2"></span></div></section><section class="panel" id="panel-P3" hidden><h2>P3 本人</h2><p class="note">本页仅由 <strong>本人</strong> 填写。金额为港元。不知道请选「不清楚」或写「不清楚」。</p><div class="field"><label class="lab" for="P3_A1"><span class="fid">A1</span> 角色确认</label><select id="P3_A1" name="P3_A1"><option value="">— 请选择 —</option><option value="父亲">父亲</option><option value="母亲">母亲</option><option value="本人">本人</option><option value="姐姐">姐姐</option><option value="弟弟">弟弟</option></select></div><div class="field"><label class="lab" for="P3_A2"><span class="fid">A2</span> 姓名或称呼</label><input type="text" id="P3_A2" name="P3_A2" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_A3"><span class="fid">A3</span> 性别</label><select id="P3_A3" name="P3_A3"><option value="">— 请选择 —</option><option value="男">男</option><option value="女">女</option><option value="不便透露">不便透露</option></select></div><div class="field"><label class="lab" for="P3_A4"><span class="fid">A4</span> 出生日期</label><input type="date" id="P3_A4" name="P3_A4"/></div><div class="field"><label class="lab" for="P3_A5"><span class="fid">A5</span> 周岁</label><input type="number" id="P3_A5" name="P3_A5" min="0" step="1"/></div><div class="field"><label class="lab" for="P3_A6"><span class="fid">A6</span> 香港身份证类型</label><select id="P3_A6" name="P3_A6"><option value="">— 请选择 —</option><option value="永久性居民身份证">永久性居民身份证</option><option value="居民身份证(非永久)">居民身份证(非永久)</option><option value="没有">没有</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_A7"><span class="fid">A7</span> 是否香港永久性居民</label><select id="P3_A7" name="P3_A7"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_A8"><span class="fid">A8</span> 入境权状况<span class="tip-btn" tabindex="0" aria-label="注释：入境权">?<span class="tip-pop"><b>入境权</b><br/>有权在香港入境及逗留。通常可有逗留期限，但不能有其他逗留条件（以须知为准）。</span></span></label><select id="P3_A8" name="P3_A8"><option value="">— 请选择 —</option><option value="有权入境(仅期限或无条件)">有权入境(仅期限或无条件)</option><option value="有其他逗留条件">有其他逗留条件</option><option value="无权入境">无权入境</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_A8b"><span class="fid">A8b</span> 逗留条件说明</label><input type="text" id="P3_A8b" name="P3_A8b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_A9"><span class="fid">A9</span> 截至2026-05-20居港满7年<span class="tip-btn" tabindex="0" aria-label="注释：居港满7年">?<span class="tip-pop"><b>居港满7年</b><br/>白表申请人常见要求：在申请截止日已在香港通常居住满7年。绿表规则不同。</span></span></label><select id="P3_A9" name="P3_A9"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_A9b"><span class="fid">A9b</span> 约已居港几年</label><input type="text" id="P3_A9b" name="P3_A9b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_A10"><span class="fid">A10</span> 目前主要居住地</label><select id="P3_A10" name="P3_A10"><option value="">— 请选择 —</option><option value="香港公屋">香港公屋</option><option value="香港私人租住">香港私人租住</option><option value="香港私人自置">香港私人自置</option><option value="香港居屋/资助盘">香港居屋/资助盘</option><option value="内地">内地</option><option value="其他">其他</option><option value="两地居住">两地居住</option></select></div><div class="field"><label class="lab" for="P3_A10b"><span class="fid">A10b</span> 居住详情</label><input type="text" id="P3_A10b" name="P3_A10b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_A11"><span class="fid">A11</span> 香港分区</label><select id="P3_A11" name="P3_A11"><option value="">— 请选择 —</option><option value="港岛">港岛</option><option value="九龙">九龙</option><option value="新界东">新界东</option><option value="新界西">新界西</option><option value="离岛">离岛</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_A12"><span class="fid">A12</span> 婚姻状况</label><select id="P3_A12" name="P3_A12"><option value="">— 请选择 —</option><option value="未婚">未婚</option><option value="已婚">已婚</option><option value="已离婚">已离婚</option><option value="丧偶">丧偶</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P3_A12b"><span class="fid">A12b</span> 离婚是否有绝对判令<span class="tip-btn" tabindex="0" aria-label="注释：绝对判令">?<span class="tip-pop"><b>绝对判令</b><br/>离婚程序完成的法院最终判令。未取得前婚姻状况认定可能不同。</span></span></label><select id="P3_A12b" name="P3_A12b"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="办理中">办理中</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_A13"><span class="fid">A13</span> 配偶是否列入同一申请表</label><select id="P3_A13" name="P3_A13"><option value="">— 请选择 —</option><option value="会列入">会列入</option><option value="不列入">不列入</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_A14"><span class="fid">A14</span> 未满18岁子女</label><textarea id="P3_A14" name="P3_A14" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_A15"><span class="fid">A15</span> 怀孕≥16周</label><select id="P3_A15" name="P3_A15"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_B16"><span class="fid">B16</span> 在申请中的角色(可写多选)</label><input type="text" id="P3_B16" name="P3_B16" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_B17"><span class="fid">B17</span> 愿做业主/联名并自住<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P3_B17" name="P3_B17"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="看情况">看情况</option></select></div><div class="field"><label class="lab" for="P3_B18"><span class="fid">B18</span> 愿与父母同住新居</label><select id="P3_B18" name="P3_B18"><option value="">— 请选择 —</option><option value="愿意长期">愿意长期</option><option value="短期可以">短期可以</option><option value="不愿意">不愿意</option><option value="视乎面积">视乎面积</option></select></div><div class="field"><label class="lab" for="P3_B19"><span class="fid">B19</span> 认为合理的家庭组合</label><select id="P3_B19" name="P3_B19"><option value="">— 请选择 —</option><option value="父母+全部子女一表">父母+全部子女一表</option><option value="父母单独子女另表">父母单独子女另表</option><option value="父母+部分子女">父母+部分子女</option><option value="一人申请">一人申请</option><option value="需建议">需建议</option></select></div><div class="field"><label class="lab" for="P3_B20"><span class="fid">B20</span> 过去2年是否列入他人申请</label><input type="text" id="P3_B20" name="P3_B20" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_C21"><span class="fid">C21</span> 曾购资助房屋(HOS/GSH/TPS/第二市场/贷款/房协/市建局等)<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><textarea id="P3_C21" name="P3_C21" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_C22"><span class="fid">C22</span> 若曾拥有是否已售及年份</label><input type="text" id="P3_C22" name="P3_C22" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_C23"><span class="fid">C23</span> 是否关键成员2年内删户</label><select id="P3_C23" name="P3_C23"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_C24"><span class="fid">C24</span> 是否公屋租户(名字在租约)<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><select id="P3_C24" name="P3_C24"><option value="">— 请选择 —</option><option value="是户主/联名租户">是户主/联名租户</option><option value="否但是家庭成员">否但是家庭成员</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_C24b"><span class="fid">C24b</span> 屋邨与入伙年</label><input type="text" id="P3_C24b" name="P3_C24b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_C25"><span class="fid">C25</span> 持有有效GFC<span class="tip-btn" tabindex="0" aria-label="注释：GFC">?<span class="tip-pop"><b>GFC</b><br/>绿表资格证明书（Green Form Certificate），非公屋户但符合指定绿表类别者持有，可按绿表申请。</span></span></label><select id="P3_C25" name="P3_C25"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="申请中">申请中</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_C26"><span class="fid">C26</span> 是否轮候公屋<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><input type="text" id="P3_C26" name="P3_C26" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_C27"><span class="fid">C27</span> 扣分制分数<span class="tip-btn" tabindex="0" aria-label="注释：扣分制">?<span class="tip-pop"><b>扣分制</b><br/>公屋不当行为扣分制度。高分可能影响继续租住或申请资格。</span></span></label><select id="P3_C27" name="P3_C27"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-15">1-15</option><option value="≥16">≥16</option><option value="不适用">不适用</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_C28"><span class="fid">C28</span> NTQ或租约违约<span class="tip-btn" tabindex="0" aria-label="注释：NTQ">?<span class="tip-pop"><b>NTQ</b><br/>Notice to Quit 迁出通知书。租约终止相关文件。</span></span></label><select id="P3_C28" name="P3_C28"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_D29"><span class="fid">D29</span> 自2024-05-21起拥有香港住宅</label><select id="P3_D29" name="P3_D29"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_D29b"><span class="fid">D29b</span> 物业类型详情</label><textarea id="P3_D29b" name="P3_D29b" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_D30"><span class="fid">D30</span> 签署过香港住宅买卖协议</label><select id="P3_D30" name="P3_D30"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_D31"><span class="fid">D31</span> 公司持股&gt;50%拥香港住宅</label><select id="P3_D31" name="P3_D31"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_D32"><span class="fid">D32</span> 遗产/联权等</label><select id="P3_D32" name="P3_D32"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_D33"><span class="fid">D33</span> 若曾拥有转让日期</label><input type="text" id="P3_D33" name="P3_D33" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_E34"><span class="fid">E34</span> 内地房产土地</label><textarea id="P3_E34" name="P3_E34" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_E35"><span class="fid">E35</span> 其他国家房产</label><input type="text" id="P3_E35" name="P3_E35" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_E36"><span class="fid">E36</span> 车辆</label><input type="text" id="P3_E36" name="P3_E36" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_E37"><span class="fid">E37</span> 投资市值约<span class="tip-btn" tabindex="0" aria-label="注释：市值">?<span class="tip-pop"><b>市值</b><br/>估值反映的市场价值。补价、印花税都可能用市值而非你付的折扣价。</span></span></label><input type="text" id="P3_E37" name="P3_E37" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_E38"><span class="fid">E38</span> 存款现金约</label><input type="text" id="P3_E38" name="P3_E38" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_E39"><span class="fid">E39</span> 强积金情况<span class="tip-btn" tabindex="0" aria-label="注释：强积金">?<span class="tip-pop"><b>强积金</b><br/>MPF。强制供款可有限度从入息扣减；自愿性供款通常不能扣。</span></span></label><input type="text" id="P3_E39" name="P3_E39" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_E40"><span class="fid">E40</span> 借出款项</label><input type="text" id="P3_E40" name="P3_E40" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_E41"><span class="fid">E41</span> 生意股权净值</label><input type="text" id="P3_E41" name="P3_E41" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_E42"><span class="fid">E42</span> 个人净资产区间<span class="tip-btn" tabindex="0" aria-label="注释：净资产">?<span class="tip-pop"><b>净资产</b><br/>资产减去负债后的净值。白表审查看家庭总净资产是否超限。</span></span></label><select id="P3_E42" name="P3_E42"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-61.5万">30-61.5万</option><option value="61.5-123万">61.5-123万</option><option value="123-300万">123-300万</option><option value="&gt;300万">&gt;300万</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_F43"><span class="fid">F43</span> 就业状态</label><select id="P3_F43" name="P3_F43"><option value="">— 请选择 —</option><option value="全职">全职</option><option value="兼职">兼职</option><option value="自雇">自雇</option><option value="无业求职">无业求职</option><option value="无业暂不求职">无业暂不求职</option><option value="学生">学生</option><option value="家务">家务</option><option value="退休">退休</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P3_F44"><span class="fid">F44</span> 无业详情与援助</label><textarea id="P3_F44" name="P3_F44" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_F45"><span class="fid">F45</span> 过去12月收入类型</label><textarea id="P3_F45" name="P3_F45" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_F46"><span class="fid">F46</span> 过去6月平均月收入</label><select id="P3_F46" name="P3_F46"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-5000">1-5000</option><option value="5001-10000">5001-10000</option><option value="10001-20000">10001-20000</option><option value="20001-30000">20001-30000</option><option value="30001-60000">30001-60000</option><option value="&gt;60000">&gt;60000</option><option value="波动大">波动大</option></select></div><div class="field"><label class="lab" for="P3_F47"><span class="fid">F47</span> 雇主提供住所</label><select id="P3_F47" name="P3_F47"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_F48"><span class="fid">F48</span> 未来12月收入预期</label><textarea id="P3_F48" name="P3_F48" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_F49"><span class="fid">F49</span> 亲属每月资助</label><input type="text" id="P3_F49" name="P3_F49" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_F50"><span class="fid">F50</span> 入息证明准备度</label><select id="P3_F50" name="P3_F50"><option value="">— 请选择 —</option><option value="完整">完整</option><option value="仅银行流水">仅银行流水</option><option value="几乎没有">几乎没有</option><option value="无收入不适用">无收入不适用</option></select></div><div class="field"><label class="lab" for="P3_G51"><span class="fid">G51</span> 信贷状况</label><select id="P3_G51" name="P3_G51"><option value="">— 请选择 —</option><option value="正常">正常</option><option value="有逾期">有逾期</option><option value="曾破产/IVA">曾破产/IVA</option><option value="无信贷纪录">无信贷纪录</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_G52"><span class="fid">G52</span> 破产状态<span class="tip-btn" tabindex="0" aria-label="注释：破产">?<span class="tip-pop"><b>破产</b><br/>法律上的破产程序。可能影响按揭批核与资产状况。</span></span></label><select id="P3_G52" name="P3_G52"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P3_G53"><span class="fid">G53</span> 现有贷款月供</label><input type="text" id="P3_G53" name="P3_G53" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_G54"><span class="fid">G54</span> 愿做按揭主贷人</label><select id="P3_G54" name="P3_G54"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="可担保">可担保</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_G55"><span class="fid">G55</span> 个人可动用首期<span class="tip-btn" tabindex="0" aria-label="注释：首期">?<span class="tip-pop"><b>首期</b><br/>买楼时自己先付的部分楼价（未计税、律师费、装修）。</span></span></label><select id="P3_G55" name="P3_G55"><option value="">— 请选择 —</option><option value="0">0</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-50万">30-50万</option><option value="50-100万">50-100万</option><option value="&gt;100万">&gt;100万</option></select></div><div class="field"><label class="lab" for="P3_H56"><span class="fid">H56</span> 可接受地区</label><textarea id="P3_H56" name="P3_H56" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_H57"><span class="fid">H57</span> 最小实用面积<span class="tip-btn" tabindex="0" aria-label="注释：实用面积">?<span class="tip-pop"><b>实用面积</b><br/>单位实际可用面积（一般小于建筑面积），售楼书会列明。</span></span></label><input type="text" id="P3_H57" name="P3_H57" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_H58"><span class="fid">H58</span> 第二市场最高楼龄<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><select id="P3_H58" name="P3_H58"><option value="">— 请选择 —</option><option value="只要新居屋">只要新居屋</option><option value="≤10年">≤10年</option><option value="≤20年">≤20年</option><option value="≤30年">≤30年</option><option value="不限">不限</option></select></div><div class="field"><label class="lab" for="P3_H59"><span class="fid">H59</span> 接受未落成2027-28<span class="tip-btn" tabindex="0" aria-label="注释：未落成">?<span class="tip-pop"><b>未落成</b><br/>楼花：建成前出售，入伙要等落成（如2027–2028），期间需自行安排住所。</span></span></label><select id="P3_H59" name="P3_H59"><option value="">— 请选择 —</option><option value="能">能</option><option value="不能">不能</option><option value="最好现楼">最好现楼</option></select></div><div class="field"><label class="lab" for="P3_H60"><span class="fid">H60</span> 接受10-15年转售限制</label><select id="P3_H60" name="P3_H60"><option value="">— 请选择 —</option><option value="能接受">能接受</option><option value="勉强">勉强</option><option value="不能接受倾向私楼">不能接受倾向私楼</option></select></div><div class="field"><label class="lab" for="P3_H61"><span class="fid">H61</span> 接受必须自住规则<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P3_H61" name="P3_H61"><option value="">— 请选择 —</option><option value="接受">接受</option><option value="有顾虑">有顾虑</option><option value="不接受">不接受</option></select></div><div class="field"><label class="lab" for="P3_H62"><span class="fid">H62</span> 装修预算</label><select id="P3_H62" name="P3_H62"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-20万">10-20万</option><option value="20-40万">20-40万</option><option value="&gt;40万">&gt;40万</option><option value="无预算">无预算</option></select></div><div class="field"><label class="lab" for="P3_I63"><span class="fid">I63</span> 有香港身份证正本</label><select id="P3_I63" name="P3_I63"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P3_I64"><span class="fid">I64</span> 出生证明/护照等</label><select id="P3_I64" name="P3_I64"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_I65"><span class="fid">I65</span> 婚姻文件</label><select id="P3_I65" name="P3_I65"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P3_I66"><span class="fid">I66</span> 最近报税表</label><select id="P3_I66" name="P3_I66"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P3_I67"><span class="fid">I67</span> 近6月银行月结</label><select id="P3_I67" name="P3_I67"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P3_J68"><span class="fid">J68</span> 特殊单位需要</label><input type="text" id="P3_J68" name="P3_J68" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_J69"><span class="fid">J69</span> 其他可能影响资格情况</label><input type="text" id="P3_J69" name="P3_J69" placeholder="请填写"/></div><div class="field"><label class="lab" for="P3_J70"><span class="fid">J70</span> 最担心三件事</label><textarea id="P3_J70" name="P3_J70" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_J71"><span class="fid">J71</span> 置业目标</label><textarea id="P3_J71" name="P3_J71" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P3_J72"><span class="fid">J72</span> 其他必须知道的事</label><textarea id="P3_J72" name="P3_J72" rows="3" placeholder="请填写"></textarea></div><div class="actions"><button type="button" class="btn save" data-save-cloud="P3">保存并提交云端</button><span class="saved" id="saved-P3"></span></div></section><section class="panel" id="panel-P4" hidden><h2>P4 姐姐</h2><p class="note">本页仅由 <strong>姐姐</strong> 填写。金额为港元。不知道请选「不清楚」或写「不清楚」。</p><div class="field"><label class="lab" for="P4_A1"><span class="fid">A1</span> 角色确认</label><select id="P4_A1" name="P4_A1"><option value="">— 请选择 —</option><option value="父亲">父亲</option><option value="母亲">母亲</option><option value="本人">本人</option><option value="姐姐">姐姐</option><option value="弟弟">弟弟</option></select></div><div class="field"><label class="lab" for="P4_A2"><span class="fid">A2</span> 姓名或称呼</label><input type="text" id="P4_A2" name="P4_A2" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_A3"><span class="fid">A3</span> 性别</label><select id="P4_A3" name="P4_A3"><option value="">— 请选择 —</option><option value="男">男</option><option value="女">女</option><option value="不便透露">不便透露</option></select></div><div class="field"><label class="lab" for="P4_A4"><span class="fid">A4</span> 出生日期</label><input type="date" id="P4_A4" name="P4_A4"/></div><div class="field"><label class="lab" for="P4_A5"><span class="fid">A5</span> 周岁</label><input type="number" id="P4_A5" name="P4_A5" min="0" step="1"/></div><div class="field"><label class="lab" for="P4_A6"><span class="fid">A6</span> 香港身份证类型</label><select id="P4_A6" name="P4_A6"><option value="">— 请选择 —</option><option value="永久性居民身份证">永久性居民身份证</option><option value="居民身份证(非永久)">居民身份证(非永久)</option><option value="没有">没有</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_A7"><span class="fid">A7</span> 是否香港永久性居民</label><select id="P4_A7" name="P4_A7"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_A8"><span class="fid">A8</span> 入境权状况<span class="tip-btn" tabindex="0" aria-label="注释：入境权">?<span class="tip-pop"><b>入境权</b><br/>有权在香港入境及逗留。通常可有逗留期限，但不能有其他逗留条件（以须知为准）。</span></span></label><select id="P4_A8" name="P4_A8"><option value="">— 请选择 —</option><option value="有权入境(仅期限或无条件)">有权入境(仅期限或无条件)</option><option value="有其他逗留条件">有其他逗留条件</option><option value="无权入境">无权入境</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_A8b"><span class="fid">A8b</span> 逗留条件说明</label><input type="text" id="P4_A8b" name="P4_A8b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_A9"><span class="fid">A9</span> 截至2026-05-20居港满7年<span class="tip-btn" tabindex="0" aria-label="注释：居港满7年">?<span class="tip-pop"><b>居港满7年</b><br/>白表申请人常见要求：在申请截止日已在香港通常居住满7年。绿表规则不同。</span></span></label><select id="P4_A9" name="P4_A9"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_A9b"><span class="fid">A9b</span> 约已居港几年</label><input type="text" id="P4_A9b" name="P4_A9b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_A10"><span class="fid">A10</span> 目前主要居住地</label><select id="P4_A10" name="P4_A10"><option value="">— 请选择 —</option><option value="香港公屋">香港公屋</option><option value="香港私人租住">香港私人租住</option><option value="香港私人自置">香港私人自置</option><option value="香港居屋/资助盘">香港居屋/资助盘</option><option value="内地">内地</option><option value="其他">其他</option><option value="两地居住">两地居住</option></select></div><div class="field"><label class="lab" for="P4_A10b"><span class="fid">A10b</span> 居住详情</label><input type="text" id="P4_A10b" name="P4_A10b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_A11"><span class="fid">A11</span> 香港分区</label><select id="P4_A11" name="P4_A11"><option value="">— 请选择 —</option><option value="港岛">港岛</option><option value="九龙">九龙</option><option value="新界东">新界东</option><option value="新界西">新界西</option><option value="离岛">离岛</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_A12"><span class="fid">A12</span> 婚姻状况</label><select id="P4_A12" name="P4_A12"><option value="">— 请选择 —</option><option value="未婚">未婚</option><option value="已婚">已婚</option><option value="已离婚">已离婚</option><option value="丧偶">丧偶</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P4_A12b"><span class="fid">A12b</span> 离婚是否有绝对判令<span class="tip-btn" tabindex="0" aria-label="注释：绝对判令">?<span class="tip-pop"><b>绝对判令</b><br/>离婚程序完成的法院最终判令。未取得前婚姻状况认定可能不同。</span></span></label><select id="P4_A12b" name="P4_A12b"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="办理中">办理中</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_A13"><span class="fid">A13</span> 配偶是否列入同一申请表</label><select id="P4_A13" name="P4_A13"><option value="">— 请选择 —</option><option value="会列入">会列入</option><option value="不列入">不列入</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_A14"><span class="fid">A14</span> 未满18岁子女</label><textarea id="P4_A14" name="P4_A14" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_A15"><span class="fid">A15</span> 怀孕≥16周</label><select id="P4_A15" name="P4_A15"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_B16"><span class="fid">B16</span> 在申请中的角色(可写多选)</label><input type="text" id="P4_B16" name="P4_B16" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_B17"><span class="fid">B17</span> 愿做业主/联名并自住<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P4_B17" name="P4_B17"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="看情况">看情况</option></select></div><div class="field"><label class="lab" for="P4_B18"><span class="fid">B18</span> 愿与父母同住新居</label><select id="P4_B18" name="P4_B18"><option value="">— 请选择 —</option><option value="愿意长期">愿意长期</option><option value="短期可以">短期可以</option><option value="不愿意">不愿意</option><option value="视乎面积">视乎面积</option></select></div><div class="field"><label class="lab" for="P4_B19"><span class="fid">B19</span> 认为合理的家庭组合</label><select id="P4_B19" name="P4_B19"><option value="">— 请选择 —</option><option value="父母+全部子女一表">父母+全部子女一表</option><option value="父母单独子女另表">父母单独子女另表</option><option value="父母+部分子女">父母+部分子女</option><option value="一人申请">一人申请</option><option value="需建议">需建议</option></select></div><div class="field"><label class="lab" for="P4_B20"><span class="fid">B20</span> 过去2年是否列入他人申请</label><input type="text" id="P4_B20" name="P4_B20" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_C21"><span class="fid">C21</span> 曾购资助房屋(HOS/GSH/TPS/第二市场/贷款/房协/市建局等)<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><textarea id="P4_C21" name="P4_C21" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_C22"><span class="fid">C22</span> 若曾拥有是否已售及年份</label><input type="text" id="P4_C22" name="P4_C22" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_C23"><span class="fid">C23</span> 是否关键成员2年内删户</label><select id="P4_C23" name="P4_C23"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_C24"><span class="fid">C24</span> 是否公屋租户(名字在租约)<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><select id="P4_C24" name="P4_C24"><option value="">— 请选择 —</option><option value="是户主/联名租户">是户主/联名租户</option><option value="否但是家庭成员">否但是家庭成员</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_C24b"><span class="fid">C24b</span> 屋邨与入伙年</label><input type="text" id="P4_C24b" name="P4_C24b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_C25"><span class="fid">C25</span> 持有有效GFC<span class="tip-btn" tabindex="0" aria-label="注释：GFC">?<span class="tip-pop"><b>GFC</b><br/>绿表资格证明书（Green Form Certificate），非公屋户但符合指定绿表类别者持有，可按绿表申请。</span></span></label><select id="P4_C25" name="P4_C25"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="申请中">申请中</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_C26"><span class="fid">C26</span> 是否轮候公屋<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><input type="text" id="P4_C26" name="P4_C26" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_C27"><span class="fid">C27</span> 扣分制分数<span class="tip-btn" tabindex="0" aria-label="注释：扣分制">?<span class="tip-pop"><b>扣分制</b><br/>公屋不当行为扣分制度。高分可能影响继续租住或申请资格。</span></span></label><select id="P4_C27" name="P4_C27"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-15">1-15</option><option value="≥16">≥16</option><option value="不适用">不适用</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_C28"><span class="fid">C28</span> NTQ或租约违约<span class="tip-btn" tabindex="0" aria-label="注释：NTQ">?<span class="tip-pop"><b>NTQ</b><br/>Notice to Quit 迁出通知书。租约终止相关文件。</span></span></label><select id="P4_C28" name="P4_C28"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_D29"><span class="fid">D29</span> 自2024-05-21起拥有香港住宅</label><select id="P4_D29" name="P4_D29"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_D29b"><span class="fid">D29b</span> 物业类型详情</label><textarea id="P4_D29b" name="P4_D29b" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_D30"><span class="fid">D30</span> 签署过香港住宅买卖协议</label><select id="P4_D30" name="P4_D30"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_D31"><span class="fid">D31</span> 公司持股&gt;50%拥香港住宅</label><select id="P4_D31" name="P4_D31"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_D32"><span class="fid">D32</span> 遗产/联权等</label><select id="P4_D32" name="P4_D32"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_D33"><span class="fid">D33</span> 若曾拥有转让日期</label><input type="text" id="P4_D33" name="P4_D33" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_E34"><span class="fid">E34</span> 内地房产土地</label><textarea id="P4_E34" name="P4_E34" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_E35"><span class="fid">E35</span> 其他国家房产</label><input type="text" id="P4_E35" name="P4_E35" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_E36"><span class="fid">E36</span> 车辆</label><input type="text" id="P4_E36" name="P4_E36" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_E37"><span class="fid">E37</span> 投资市值约<span class="tip-btn" tabindex="0" aria-label="注释：市值">?<span class="tip-pop"><b>市值</b><br/>估值反映的市场价值。补价、印花税都可能用市值而非你付的折扣价。</span></span></label><input type="text" id="P4_E37" name="P4_E37" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_E38"><span class="fid">E38</span> 存款现金约</label><input type="text" id="P4_E38" name="P4_E38" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_E39"><span class="fid">E39</span> 强积金情况<span class="tip-btn" tabindex="0" aria-label="注释：强积金">?<span class="tip-pop"><b>强积金</b><br/>MPF。强制供款可有限度从入息扣减；自愿性供款通常不能扣。</span></span></label><input type="text" id="P4_E39" name="P4_E39" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_E40"><span class="fid">E40</span> 借出款项</label><input type="text" id="P4_E40" name="P4_E40" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_E41"><span class="fid">E41</span> 生意股权净值</label><input type="text" id="P4_E41" name="P4_E41" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_E42"><span class="fid">E42</span> 个人净资产区间<span class="tip-btn" tabindex="0" aria-label="注释：净资产">?<span class="tip-pop"><b>净资产</b><br/>资产减去负债后的净值。白表审查看家庭总净资产是否超限。</span></span></label><select id="P4_E42" name="P4_E42"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-61.5万">30-61.5万</option><option value="61.5-123万">61.5-123万</option><option value="123-300万">123-300万</option><option value="&gt;300万">&gt;300万</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_F43"><span class="fid">F43</span> 就业状态</label><select id="P4_F43" name="P4_F43"><option value="">— 请选择 —</option><option value="全职">全职</option><option value="兼职">兼职</option><option value="自雇">自雇</option><option value="无业求职">无业求职</option><option value="无业暂不求职">无业暂不求职</option><option value="学生">学生</option><option value="家务">家务</option><option value="退休">退休</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P4_F44"><span class="fid">F44</span> 无业详情与援助</label><textarea id="P4_F44" name="P4_F44" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_F45"><span class="fid">F45</span> 过去12月收入类型</label><textarea id="P4_F45" name="P4_F45" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_F46"><span class="fid">F46</span> 过去6月平均月收入</label><select id="P4_F46" name="P4_F46"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-5000">1-5000</option><option value="5001-10000">5001-10000</option><option value="10001-20000">10001-20000</option><option value="20001-30000">20001-30000</option><option value="30001-60000">30001-60000</option><option value="&gt;60000">&gt;60000</option><option value="波动大">波动大</option></select></div><div class="field"><label class="lab" for="P4_F47"><span class="fid">F47</span> 雇主提供住所</label><select id="P4_F47" name="P4_F47"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_F48"><span class="fid">F48</span> 未来12月收入预期</label><textarea id="P4_F48" name="P4_F48" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_F49"><span class="fid">F49</span> 亲属每月资助</label><input type="text" id="P4_F49" name="P4_F49" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_F50"><span class="fid">F50</span> 入息证明准备度</label><select id="P4_F50" name="P4_F50"><option value="">— 请选择 —</option><option value="完整">完整</option><option value="仅银行流水">仅银行流水</option><option value="几乎没有">几乎没有</option><option value="无收入不适用">无收入不适用</option></select></div><div class="field"><label class="lab" for="P4_G51"><span class="fid">G51</span> 信贷状况</label><select id="P4_G51" name="P4_G51"><option value="">— 请选择 —</option><option value="正常">正常</option><option value="有逾期">有逾期</option><option value="曾破产/IVA">曾破产/IVA</option><option value="无信贷纪录">无信贷纪录</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_G52"><span class="fid">G52</span> 破产状态<span class="tip-btn" tabindex="0" aria-label="注释：破产">?<span class="tip-pop"><b>破产</b><br/>法律上的破产程序。可能影响按揭批核与资产状况。</span></span></label><select id="P4_G52" name="P4_G52"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P4_G53"><span class="fid">G53</span> 现有贷款月供</label><input type="text" id="P4_G53" name="P4_G53" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_G54"><span class="fid">G54</span> 愿做按揭主贷人</label><select id="P4_G54" name="P4_G54"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="可担保">可担保</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_G55"><span class="fid">G55</span> 个人可动用首期<span class="tip-btn" tabindex="0" aria-label="注释：首期">?<span class="tip-pop"><b>首期</b><br/>买楼时自己先付的部分楼价（未计税、律师费、装修）。</span></span></label><select id="P4_G55" name="P4_G55"><option value="">— 请选择 —</option><option value="0">0</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-50万">30-50万</option><option value="50-100万">50-100万</option><option value="&gt;100万">&gt;100万</option></select></div><div class="field"><label class="lab" for="P4_H56"><span class="fid">H56</span> 可接受地区</label><textarea id="P4_H56" name="P4_H56" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_H57"><span class="fid">H57</span> 最小实用面积<span class="tip-btn" tabindex="0" aria-label="注释：实用面积">?<span class="tip-pop"><b>实用面积</b><br/>单位实际可用面积（一般小于建筑面积），售楼书会列明。</span></span></label><input type="text" id="P4_H57" name="P4_H57" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_H58"><span class="fid">H58</span> 第二市场最高楼龄<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><select id="P4_H58" name="P4_H58"><option value="">— 请选择 —</option><option value="只要新居屋">只要新居屋</option><option value="≤10年">≤10年</option><option value="≤20年">≤20年</option><option value="≤30年">≤30年</option><option value="不限">不限</option></select></div><div class="field"><label class="lab" for="P4_H59"><span class="fid">H59</span> 接受未落成2027-28<span class="tip-btn" tabindex="0" aria-label="注释：未落成">?<span class="tip-pop"><b>未落成</b><br/>楼花：建成前出售，入伙要等落成（如2027–2028），期间需自行安排住所。</span></span></label><select id="P4_H59" name="P4_H59"><option value="">— 请选择 —</option><option value="能">能</option><option value="不能">不能</option><option value="最好现楼">最好现楼</option></select></div><div class="field"><label class="lab" for="P4_H60"><span class="fid">H60</span> 接受10-15年转售限制</label><select id="P4_H60" name="P4_H60"><option value="">— 请选择 —</option><option value="能接受">能接受</option><option value="勉强">勉强</option><option value="不能接受倾向私楼">不能接受倾向私楼</option></select></div><div class="field"><label class="lab" for="P4_H61"><span class="fid">H61</span> 接受必须自住规则<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P4_H61" name="P4_H61"><option value="">— 请选择 —</option><option value="接受">接受</option><option value="有顾虑">有顾虑</option><option value="不接受">不接受</option></select></div><div class="field"><label class="lab" for="P4_H62"><span class="fid">H62</span> 装修预算</label><select id="P4_H62" name="P4_H62"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-20万">10-20万</option><option value="20-40万">20-40万</option><option value="&gt;40万">&gt;40万</option><option value="无预算">无预算</option></select></div><div class="field"><label class="lab" for="P4_I63"><span class="fid">I63</span> 有香港身份证正本</label><select id="P4_I63" name="P4_I63"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P4_I64"><span class="fid">I64</span> 出生证明/护照等</label><select id="P4_I64" name="P4_I64"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_I65"><span class="fid">I65</span> 婚姻文件</label><select id="P4_I65" name="P4_I65"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P4_I66"><span class="fid">I66</span> 最近报税表</label><select id="P4_I66" name="P4_I66"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P4_I67"><span class="fid">I67</span> 近6月银行月结</label><select id="P4_I67" name="P4_I67"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P4_J68"><span class="fid">J68</span> 特殊单位需要</label><input type="text" id="P4_J68" name="P4_J68" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_J69"><span class="fid">J69</span> 其他可能影响资格情况</label><input type="text" id="P4_J69" name="P4_J69" placeholder="请填写"/></div><div class="field"><label class="lab" for="P4_J70"><span class="fid">J70</span> 最担心三件事</label><textarea id="P4_J70" name="P4_J70" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_J71"><span class="fid">J71</span> 置业目标</label><textarea id="P4_J71" name="P4_J71" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P4_J72"><span class="fid">J72</span> 其他必须知道的事</label><textarea id="P4_J72" name="P4_J72" rows="3" placeholder="请填写"></textarea></div><div class="actions"><button type="button" class="btn save" data-save-cloud="P4">保存并提交云端</button><span class="saved" id="saved-P4"></span></div></section><section class="panel" id="panel-P5" hidden><h2>P5 弟弟</h2><p class="note">本页仅由 <strong>弟弟</strong> 填写。金额为港元。不知道请选「不清楚」或写「不清楚」。</p><div class="field"><label class="lab" for="P5_A1"><span class="fid">A1</span> 角色确认</label><select id="P5_A1" name="P5_A1"><option value="">— 请选择 —</option><option value="父亲">父亲</option><option value="母亲">母亲</option><option value="本人">本人</option><option value="姐姐">姐姐</option><option value="弟弟">弟弟</option></select></div><div class="field"><label class="lab" for="P5_A2"><span class="fid">A2</span> 姓名或称呼</label><input type="text" id="P5_A2" name="P5_A2" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_A3"><span class="fid">A3</span> 性别</label><select id="P5_A3" name="P5_A3"><option value="">— 请选择 —</option><option value="男">男</option><option value="女">女</option><option value="不便透露">不便透露</option></select></div><div class="field"><label class="lab" for="P5_A4"><span class="fid">A4</span> 出生日期</label><input type="date" id="P5_A4" name="P5_A4"/></div><div class="field"><label class="lab" for="P5_A5"><span class="fid">A5</span> 周岁</label><input type="number" id="P5_A5" name="P5_A5" min="0" step="1"/></div><div class="field"><label class="lab" for="P5_A6"><span class="fid">A6</span> 香港身份证类型</label><select id="P5_A6" name="P5_A6"><option value="">— 请选择 —</option><option value="永久性居民身份证">永久性居民身份证</option><option value="居民身份证(非永久)">居民身份证(非永久)</option><option value="没有">没有</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_A7"><span class="fid">A7</span> 是否香港永久性居民</label><select id="P5_A7" name="P5_A7"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_A8"><span class="fid">A8</span> 入境权状况<span class="tip-btn" tabindex="0" aria-label="注释：入境权">?<span class="tip-pop"><b>入境权</b><br/>有权在香港入境及逗留。通常可有逗留期限，但不能有其他逗留条件（以须知为准）。</span></span></label><select id="P5_A8" name="P5_A8"><option value="">— 请选择 —</option><option value="有权入境(仅期限或无条件)">有权入境(仅期限或无条件)</option><option value="有其他逗留条件">有其他逗留条件</option><option value="无权入境">无权入境</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_A8b"><span class="fid">A8b</span> 逗留条件说明</label><input type="text" id="P5_A8b" name="P5_A8b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_A9"><span class="fid">A9</span> 截至2026-05-20居港满7年<span class="tip-btn" tabindex="0" aria-label="注释：居港满7年">?<span class="tip-pop"><b>居港满7年</b><br/>白表申请人常见要求：在申请截止日已在香港通常居住满7年。绿表规则不同。</span></span></label><select id="P5_A9" name="P5_A9"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_A9b"><span class="fid">A9b</span> 约已居港几年</label><input type="text" id="P5_A9b" name="P5_A9b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_A10"><span class="fid">A10</span> 目前主要居住地</label><select id="P5_A10" name="P5_A10"><option value="">— 请选择 —</option><option value="香港公屋">香港公屋</option><option value="香港私人租住">香港私人租住</option><option value="香港私人自置">香港私人自置</option><option value="香港居屋/资助盘">香港居屋/资助盘</option><option value="内地">内地</option><option value="其他">其他</option><option value="两地居住">两地居住</option></select></div><div class="field"><label class="lab" for="P5_A10b"><span class="fid">A10b</span> 居住详情</label><input type="text" id="P5_A10b" name="P5_A10b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_A11"><span class="fid">A11</span> 香港分区</label><select id="P5_A11" name="P5_A11"><option value="">— 请选择 —</option><option value="港岛">港岛</option><option value="九龙">九龙</option><option value="新界东">新界东</option><option value="新界西">新界西</option><option value="离岛">离岛</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_A12"><span class="fid">A12</span> 婚姻状况</label><select id="P5_A12" name="P5_A12"><option value="">— 请选择 —</option><option value="未婚">未婚</option><option value="已婚">已婚</option><option value="已离婚">已离婚</option><option value="丧偶">丧偶</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P5_A12b"><span class="fid">A12b</span> 离婚是否有绝对判令<span class="tip-btn" tabindex="0" aria-label="注释：绝对判令">?<span class="tip-pop"><b>绝对判令</b><br/>离婚程序完成的法院最终判令。未取得前婚姻状况认定可能不同。</span></span></label><select id="P5_A12b" name="P5_A12b"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="办理中">办理中</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_A13"><span class="fid">A13</span> 配偶是否列入同一申请表</label><select id="P5_A13" name="P5_A13"><option value="">— 请选择 —</option><option value="会列入">会列入</option><option value="不列入">不列入</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_A14"><span class="fid">A14</span> 未满18岁子女</label><textarea id="P5_A14" name="P5_A14" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_A15"><span class="fid">A15</span> 怀孕≥16周</label><select id="P5_A15" name="P5_A15"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_B16"><span class="fid">B16</span> 在申请中的角色(可写多选)</label><input type="text" id="P5_B16" name="P5_B16" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_B17"><span class="fid">B17</span> 愿做业主/联名并自住<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P5_B17" name="P5_B17"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="看情况">看情况</option></select></div><div class="field"><label class="lab" for="P5_B18"><span class="fid">B18</span> 愿与父母同住新居</label><select id="P5_B18" name="P5_B18"><option value="">— 请选择 —</option><option value="愿意长期">愿意长期</option><option value="短期可以">短期可以</option><option value="不愿意">不愿意</option><option value="视乎面积">视乎面积</option></select></div><div class="field"><label class="lab" for="P5_B19"><span class="fid">B19</span> 认为合理的家庭组合</label><select id="P5_B19" name="P5_B19"><option value="">— 请选择 —</option><option value="父母+全部子女一表">父母+全部子女一表</option><option value="父母单独子女另表">父母单独子女另表</option><option value="父母+部分子女">父母+部分子女</option><option value="一人申请">一人申请</option><option value="需建议">需建议</option></select></div><div class="field"><label class="lab" for="P5_B20"><span class="fid">B20</span> 过去2年是否列入他人申请</label><input type="text" id="P5_B20" name="P5_B20" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_C21"><span class="fid">C21</span> 曾购资助房屋(HOS/GSH/TPS/第二市场/贷款/房协/市建局等)<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><textarea id="P5_C21" name="P5_C21" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_C22"><span class="fid">C22</span> 若曾拥有是否已售及年份</label><input type="text" id="P5_C22" name="P5_C22" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_C23"><span class="fid">C23</span> 是否关键成员2年内删户</label><select id="P5_C23" name="P5_C23"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_C24"><span class="fid">C24</span> 是否公屋租户(名字在租约)<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><select id="P5_C24" name="P5_C24"><option value="">— 请选择 —</option><option value="是户主/联名租户">是户主/联名租户</option><option value="否但是家庭成员">否但是家庭成员</option><option value="否">否</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_C24b"><span class="fid">C24b</span> 屋邨与入伙年</label><input type="text" id="P5_C24b" name="P5_C24b" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_C25"><span class="fid">C25</span> 持有有效GFC<span class="tip-btn" tabindex="0" aria-label="注释：GFC">?<span class="tip-pop"><b>GFC</b><br/>绿表资格证明书（Green Form Certificate），非公屋户但符合指定绿表类别者持有，可按绿表申请。</span></span></label><select id="P5_C25" name="P5_C25"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="申请中">申请中</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_C26"><span class="fid">C26</span> 是否轮候公屋<span class="tip-btn" tabindex="0" aria-label="注释：公屋">?<span class="tip-pop"><b>公屋</b><br/>公共租住房屋。户主/合资格者可有绿表路径；购资助房屋后通常须交回公屋。</span></span></label><input type="text" id="P5_C26" name="P5_C26" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_C27"><span class="fid">C27</span> 扣分制分数<span class="tip-btn" tabindex="0" aria-label="注释：扣分制">?<span class="tip-pop"><b>扣分制</b><br/>公屋不当行为扣分制度。高分可能影响继续租住或申请资格。</span></span></label><select id="P5_C27" name="P5_C27"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-15">1-15</option><option value="≥16">≥16</option><option value="不适用">不适用</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_C28"><span class="fid">C28</span> NTQ或租约违约<span class="tip-btn" tabindex="0" aria-label="注释：NTQ">?<span class="tip-pop"><b>NTQ</b><br/>Notice to Quit 迁出通知书。租约终止相关文件。</span></span></label><select id="P5_C28" name="P5_C28"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_D29"><span class="fid">D29</span> 自2024-05-21起拥有香港住宅</label><select id="P5_D29" name="P5_D29"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_D29b"><span class="fid">D29b</span> 物业类型详情</label><textarea id="P5_D29b" name="P5_D29b" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_D30"><span class="fid">D30</span> 签署过香港住宅买卖协议</label><select id="P5_D30" name="P5_D30"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_D31"><span class="fid">D31</span> 公司持股&gt;50%拥香港住宅</label><select id="P5_D31" name="P5_D31"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_D32"><span class="fid">D32</span> 遗产/联权等</label><select id="P5_D32" name="P5_D32"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_D33"><span class="fid">D33</span> 若曾拥有转让日期</label><input type="text" id="P5_D33" name="P5_D33" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_E34"><span class="fid">E34</span> 内地房产土地</label><textarea id="P5_E34" name="P5_E34" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_E35"><span class="fid">E35</span> 其他国家房产</label><input type="text" id="P5_E35" name="P5_E35" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_E36"><span class="fid">E36</span> 车辆</label><input type="text" id="P5_E36" name="P5_E36" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_E37"><span class="fid">E37</span> 投资市值约<span class="tip-btn" tabindex="0" aria-label="注释：市值">?<span class="tip-pop"><b>市值</b><br/>估值反映的市场价值。补价、印花税都可能用市值而非你付的折扣价。</span></span></label><input type="text" id="P5_E37" name="P5_E37" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_E38"><span class="fid">E38</span> 存款现金约</label><input type="text" id="P5_E38" name="P5_E38" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_E39"><span class="fid">E39</span> 强积金情况<span class="tip-btn" tabindex="0" aria-label="注释：强积金">?<span class="tip-pop"><b>强积金</b><br/>MPF。强制供款可有限度从入息扣减；自愿性供款通常不能扣。</span></span></label><input type="text" id="P5_E39" name="P5_E39" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_E40"><span class="fid">E40</span> 借出款项</label><input type="text" id="P5_E40" name="P5_E40" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_E41"><span class="fid">E41</span> 生意股权净值</label><input type="text" id="P5_E41" name="P5_E41" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_E42"><span class="fid">E42</span> 个人净资产区间<span class="tip-btn" tabindex="0" aria-label="注释：净资产">?<span class="tip-pop"><b>净资产</b><br/>资产减去负债后的净值。白表审查看家庭总净资产是否超限。</span></span></label><select id="P5_E42" name="P5_E42"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-61.5万">30-61.5万</option><option value="61.5-123万">61.5-123万</option><option value="123-300万">123-300万</option><option value="&gt;300万">&gt;300万</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_F43"><span class="fid">F43</span> 就业状态</label><select id="P5_F43" name="P5_F43"><option value="">— 请选择 —</option><option value="全职">全职</option><option value="兼职">兼职</option><option value="自雇">自雇</option><option value="无业求职">无业求职</option><option value="无业暂不求职">无业暂不求职</option><option value="学生">学生</option><option value="家务">家务</option><option value="退休">退休</option><option value="其他">其他</option></select></div><div class="field"><label class="lab" for="P5_F44"><span class="fid">F44</span> 无业详情与援助</label><textarea id="P5_F44" name="P5_F44" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_F45"><span class="fid">F45</span> 过去12月收入类型</label><textarea id="P5_F45" name="P5_F45" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_F46"><span class="fid">F46</span> 过去6月平均月收入</label><select id="P5_F46" name="P5_F46"><option value="">— 请选择 —</option><option value="0">0</option><option value="1-5000">1-5000</option><option value="5001-10000">5001-10000</option><option value="10001-20000">10001-20000</option><option value="20001-30000">20001-30000</option><option value="30001-60000">30001-60000</option><option value="&gt;60000">&gt;60000</option><option value="波动大">波动大</option></select></div><div class="field"><label class="lab" for="P5_F47"><span class="fid">F47</span> 雇主提供住所</label><select id="P5_F47" name="P5_F47"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_F48"><span class="fid">F48</span> 未来12月收入预期</label><textarea id="P5_F48" name="P5_F48" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_F49"><span class="fid">F49</span> 亲属每月资助</label><input type="text" id="P5_F49" name="P5_F49" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_F50"><span class="fid">F50</span> 入息证明准备度</label><select id="P5_F50" name="P5_F50"><option value="">— 请选择 —</option><option value="完整">完整</option><option value="仅银行流水">仅银行流水</option><option value="几乎没有">几乎没有</option><option value="无收入不适用">无收入不适用</option></select></div><div class="field"><label class="lab" for="P5_G51"><span class="fid">G51</span> 信贷状况</label><select id="P5_G51" name="P5_G51"><option value="">— 请选择 —</option><option value="正常">正常</option><option value="有逾期">有逾期</option><option value="曾破产/IVA">曾破产/IVA</option><option value="无信贷纪录">无信贷纪录</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_G52"><span class="fid">G52</span> 破产状态<span class="tip-btn" tabindex="0" aria-label="注释：破产">?<span class="tip-pop"><b>破产</b><br/>法律上的破产程序。可能影响按揭批核与资产状况。</span></span></label><select id="P5_G52" name="P5_G52"><option value="">— 请选择 —</option><option value="否">否</option><option value="是">是</option><option value="不清楚">不清楚</option></select></div><div class="field"><label class="lab" for="P5_G53"><span class="fid">G53</span> 现有贷款月供</label><input type="text" id="P5_G53" name="P5_G53" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_G54"><span class="fid">G54</span> 愿做按揭主贷人</label><select id="P5_G54" name="P5_G54"><option value="">— 请选择 —</option><option value="愿意">愿意</option><option value="不愿意">不愿意</option><option value="可担保">可担保</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_G55"><span class="fid">G55</span> 个人可动用首期<span class="tip-btn" tabindex="0" aria-label="注释：首期">?<span class="tip-pop"><b>首期</b><br/>买楼时自己先付的部分楼价（未计税、律师费、装修）。</span></span></label><select id="P5_G55" name="P5_G55"><option value="">— 请选择 —</option><option value="0">0</option><option value="&lt;10万">&lt;10万</option><option value="10-30万">10-30万</option><option value="30-50万">30-50万</option><option value="50-100万">50-100万</option><option value="&gt;100万">&gt;100万</option></select></div><div class="field"><label class="lab" for="P5_H56"><span class="fid">H56</span> 可接受地区</label><textarea id="P5_H56" name="P5_H56" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_H57"><span class="fid">H57</span> 最小实用面积<span class="tip-btn" tabindex="0" aria-label="注释：实用面积">?<span class="tip-pop"><b>实用面积</b><br/>单位实际可用面积（一般小于建筑面积），售楼书会列明。</span></span></label><input type="text" id="P5_H57" name="P5_H57" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_H58"><span class="fid">H58</span> 第二市场最高楼龄<span class="tip-btn" tabindex="0" aria-label="注释：第二市场">?<span class="tip-pop"><b>第二市场</b><br/>未缴补价的资助房屋在合资格买家之间转让的市场，一般无需先补地价。</span></span></label><select id="P5_H58" name="P5_H58"><option value="">— 请选择 —</option><option value="只要新居屋">只要新居屋</option><option value="≤10年">≤10年</option><option value="≤20年">≤20年</option><option value="≤30年">≤30年</option><option value="不限">不限</option></select></div><div class="field"><label class="lab" for="P5_H59"><span class="fid">H59</span> 接受未落成2027-28<span class="tip-btn" tabindex="0" aria-label="注释：未落成">?<span class="tip-pop"><b>未落成</b><br/>楼花：建成前出售，入伙要等落成（如2027–2028），期间需自行安排住所。</span></span></label><select id="P5_H59" name="P5_H59"><option value="">— 请选择 —</option><option value="能">能</option><option value="不能">不能</option><option value="最好现楼">最好现楼</option></select></div><div class="field"><label class="lab" for="P5_H60"><span class="fid">H60</span> 接受10-15年转售限制</label><select id="P5_H60" name="P5_H60"><option value="">— 请选择 —</option><option value="能接受">能接受</option><option value="勉强">勉强</option><option value="不能接受倾向私楼">不能接受倾向私楼</option></select></div><div class="field"><label class="lab" for="P5_H61"><span class="fid">H61</span> 接受必须自住规则<span class="tip-btn" tabindex="0" aria-label="注释：自住">?<span class="tip-pop"><b>自住</b><br/>业主及申请表所列家人须实际居住；长期空置可能面临回购等后果。</span></span></label><select id="P5_H61" name="P5_H61"><option value="">— 请选择 —</option><option value="接受">接受</option><option value="有顾虑">有顾虑</option><option value="不接受">不接受</option></select></div><div class="field"><label class="lab" for="P5_H62"><span class="fid">H62</span> 装修预算</label><select id="P5_H62" name="P5_H62"><option value="">— 请选择 —</option><option value="&lt;10万">&lt;10万</option><option value="10-20万">10-20万</option><option value="20-40万">20-40万</option><option value="&gt;40万">&gt;40万</option><option value="无预算">无预算</option></select></div><div class="field"><label class="lab" for="P5_I63"><span class="fid">I63</span> 有香港身份证正本</label><select id="P5_I63" name="P5_I63"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P5_I64"><span class="fid">I64</span> 出生证明/护照等</label><select id="P5_I64" name="P5_I64"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_I65"><span class="fid">I65</span> 婚姻文件</label><select id="P5_I65" name="P5_I65"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option><option value="不适用">不适用</option></select></div><div class="field"><label class="lab" for="P5_I66"><span class="fid">I66</span> 最近报税表</label><select id="P5_I66" name="P5_I66"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P5_I67"><span class="fid">I67</span> 近6月银行月结</label><select id="P5_I67" name="P5_I67"><option value="">— 请选择 —</option><option value="是">是</option><option value="否">否</option></select></div><div class="field"><label class="lab" for="P5_J68"><span class="fid">J68</span> 特殊单位需要</label><input type="text" id="P5_J68" name="P5_J68" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_J69"><span class="fid">J69</span> 其他可能影响资格情况</label><input type="text" id="P5_J69" name="P5_J69" placeholder="请填写"/></div><div class="field"><label class="lab" for="P5_J70"><span class="fid">J70</span> 最担心三件事</label><textarea id="P5_J70" name="P5_J70" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_J71"><span class="fid">J71</span> 置业目标</label><textarea id="P5_J71" name="P5_J71" rows="3" placeholder="请填写"></textarea></div><div class="field"><label class="lab" for="P5_J72"><span class="fid">J72</span> 其他必须知道的事</label><textarea id="P5_J72" name="P5_J72" rows="3" placeholder="请填写"></textarea></div><div class="actions"><button type="button" class="btn save" data-save-cloud="P5">保存并提交云端</button><span class="saved" id="saved-P5"></span></div></section>
-</div>
+
 <footer>
-  隐私：点「保存并提交云端」后上传到 bytebin.lucko.me（主通道；失败自动改 paste.rs）。刷新页面会按云端链接自动拉最新数据。链接知悉者可读，勿填密码/完整身份证号。<br/>
-  本问卷不是房委会申请表，不构成法律/税务/按揭意见。政策参考日 2026-07-14。
+  隐私：数据提交到 bytebin.lucko.me（主通道；失败自动改 paste.rs）。链接知悉者可读。<br/>
+  旧版复杂问卷已归档在 docs/10-questionnaire/archive/v1-complex/。版本 simple-v1 · 2026-07-15
 </footer>
+
 <script>
-const KEY = 'hos_family_q_v1';
-const CLOUD_KEY = 'hos_family_q_cloud_v1';
-const store = () => JSON.parse(localStorage.getItem(KEY) || '{}');
+const KEY = 'hos_bj2_simple_v1';
+const CLOUD_KEY = 'hos_bj2_simple_cloud_v1';
+
+const store = () => {
+  try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; }
+};
 const saveStore = (o) => localStorage.setItem(KEY, JSON.stringify(o));
 
 function setStatus(msg, type) {
@@ -195,82 +778,35 @@ function setStatus(msg, type) {
   el.className = 'cloud-status' + (type ? ' ' + type : '');
 }
 
-function showTab(id) {
-  document.querySelectorAll('.panel').forEach((p) => (p.hidden = true));
-  document.querySelectorAll('.tab').forEach((t) => t.classList.toggle('active', t.dataset.tab === id));
-  const panel = document.getElementById('panel-' + id);
-  if (panel) panel.hidden = false;
-  const base = location.pathname + location.search;
-  history.replaceState(null, '', base + '#' + id);
-}
-
 function getCloudMeta() {
-  try {
-    return JSON.parse(localStorage.getItem(CLOUD_KEY) || 'null');
-  } catch (e) {
-    return null;
-  }
+  try { return JSON.parse(localStorage.getItem(CLOUD_KEY) || 'null'); } catch (e) { return null; }
 }
 
-/** Parse cloud URL / short code into {provider, id, url, raw} */
 function parseCloudRef(input) {
   if (!input) return null;
   let s = String(input).trim();
-  // query form c=bb_xxx or c=xxx
   if (s.startsWith('bb_') || s.startsWith('bb:')) {
     const id = s.replace(/^bb[_:]/, '');
-    return {
-      provider: 'bytebin',
-      id,
-      url: 'https://bytebin.lucko.me/' + id,
-      raw: 'https://bytebin.lucko.me/' + id,
-    };
+    return { provider: 'bytebin', id, url: 'https://bytebin.lucko.me/' + id, raw: 'https://bytebin.lucko.me/' + id };
   }
   if (s.startsWith('pr_') || s.startsWith('pr:')) {
     const id = s.replace(/^pr[_:]/, '');
-    return {
-      provider: 'pasters',
-      id,
-      url: 'https://paste.rs/' + id,
-      raw: 'https://paste.rs/' + id,
-    };
+    return { provider: 'pasters', id, url: 'https://paste.rs/' + id, raw: 'https://paste.rs/' + id };
   }
   let m = s.match(/bytebin\.lucko\.me\/([A-Za-z0-9_-]+)/i);
-  if (m) {
-    return {
-      provider: 'bytebin',
-      id: m[1],
-      url: 'https://bytebin.lucko.me/' + m[1],
-      raw: 'https://bytebin.lucko.me/' + m[1],
-    };
-  }
+  if (m) return { provider: 'bytebin', id: m[1], url: 'https://bytebin.lucko.me/' + m[1], raw: 'https://bytebin.lucko.me/' + m[1] };
   m = s.match(/paste\.rs\/([A-Za-z0-9_-]+)/i);
-  if (m) {
-    return {
-      provider: 'pasters',
-      id: m[1],
-      url: 'https://paste.rs/' + m[1],
-      raw: 'https://paste.rs/' + m[1],
-    };
-  }
+  if (m) return { provider: 'pasters', id: m[1], url: 'https://paste.rs/' + m[1], raw: 'https://paste.rs/' + m[1] };
   m = s.match(/dpaste\.com\/([A-Za-z0-9]+)/i);
   if (m) {
     const id = m[1];
     const url = 'https://dpaste.com/' + id;
     return { provider: 'dpaste', id, url, raw: url + '.txt' };
   }
-  // bare token: prefer bytebin (current primary)
-  if (/^[A-Za-z0-9_-]{4,32}$/.test(s)) {
-    return {
-      provider: 'bytebin',
-      id: s,
-      url: 'https://bytebin.lucko.me/' + s,
-      raw: 'https://bytebin.lucko.me/' + s,
-    };
+  if (/^[A-Za-z0-9_-]{4,40}$/.test(s)) {
+    return { provider: 'bytebin', id: s, url: 'https://bytebin.lucko.me/' + s, raw: 'https://bytebin.lucko.me/' + s };
   }
-  if (/^https?:\/\//i.test(s)) {
-    return { provider: 'url', id: s, url: s, raw: s };
-  }
+  if (/^https?:\/\//i.test(s)) return { provider: 'url', id: s, url: s, raw: s };
   return null;
 }
 
@@ -295,30 +831,40 @@ function setCloudUrlInPage(refOrUrl) {
   if (code) {
     const sp = new URLSearchParams(location.search);
     sp.set('c', code);
-    const hash = location.hash || '#G0';
-    history.replaceState(null, '', location.pathname + '?' + sp.toString() + hash);
+    history.replaceState(null, '', location.pathname + '?' + sp.toString() + (location.hash || ''));
   }
 }
 
+function formFields() {
+  return [...document.querySelectorAll('input,select,textarea')].filter(
+    (el) => el.name && el.id !== 'cloudLinkInput' && el.id !== 'cloudUrl'
+  );
+}
+
 function collectAll() {
-  ['G0', 'P1', 'P2', 'P3', 'P4', 'P5'].forEach((pid) => {
-    const data = store();
-    document.querySelectorAll(`#panel-${pid} input, #panel-${pid} select, #panel-${pid} textarea`).forEach((el) => {
-      if (el.name) data[el.name] = el.value;
-    });
-    data['_saved_' + pid] = new Date().toISOString();
-    saveStore(data);
-  });
   const data = store();
+  formFields().forEach((el) => {
+    if (el.type === 'checkbox') {
+      data[el.name] = el.checked ? (el.value || '1') : '';
+    } else {
+      data[el.name] = el.value;
+    }
+  });
   const linkEl = document.getElementById('cloudLinkInput');
-  if (linkEl) data['_cloudLinkField'] = linkEl.value;
+  if (linkEl) data._cloudLinkField = linkEl.value;
   data._exportedAt = new Date().toISOString();
   data._meta = {
+    purpose: '白居二第二市场下一步建议',
+    version: 'simple-v1',
     family: '5人:父/母/本人/姐/弟',
-    purpose: '居屋路径推荐',
-    version: 4,
+    known: {
+      plan: '白居二2025',
+      appNo: 'W021896',
+      order: '1464',
+      wfNo: 'WF25015194'
+    },
     cloud: true,
-    backend: 'bytebin+pasters',
+    backend: 'bytebin+pasters'
   };
   saveStore(data);
   return data;
@@ -328,31 +874,33 @@ function applyDataToForm(data) {
   if (!data || typeof data !== 'object') return;
   const merged = Object.assign({}, store(), data);
   saveStore(merged);
-  document.querySelectorAll('input,select,textarea').forEach((el) => {
-    if (!el.name) return;
-    if (el.id === 'cloudLinkInput' || el.id === 'cloudUrl') return;
-    if (merged[el.name] !== undefined && merged[el.name] !== null) {
-      el.value = merged[el.name];
+  formFields().forEach((el) => {
+    if (merged[el.name] === undefined || merged[el.name] === null) return;
+    if (el.type === 'checkbox') {
+      el.checked = !!merged[el.name] && merged[el.name] !== '0' && merged[el.name] !== 'false';
+    } else if (el.type !== 'hidden' || el.name.startsWith('A_')) {
+      // allow hidden known facts to stay as defaults unless cloud overrides
+      if (el.type === 'hidden') {
+        // keep prefilled known facts; only override if cloud has value
+        if (String(merged[el.name]).trim()) el.value = merged[el.name];
+      } else {
+        el.value = merged[el.name];
+      }
     }
   });
-  const roles = { P1: '父亲', P2: '母亲', P3: '本人', P4: '姐姐', P5: '弟弟' };
-  for (const [k, v] of Object.entries(roles)) {
-    const el = document.querySelector(`[name="${k}_A1"]`);
-    if (el && !el.value) el.value = v;
-  }
   updateProgress();
 }
 
 function updateProgress() {
-  const data = store();
-  const ids = ['G0', 'P1', 'P2', 'P3', 'P4', 'P5'];
-  const done = ids.filter((id) => data['_saved_' + id]).length;
-  const filled = [...document.querySelectorAll('input,select,textarea')].filter(
-    (el) => el.name && String(el.value || '').trim() && el.id !== 'cloudLinkInput' && el.id !== 'cloudUrl'
-  ).length;
+  const filled = formFields().filter((el) => {
+    if (el.type === 'hidden') return false;
+    if (el.type === 'checkbox') return el.checked;
+    return String(el.value || '').trim();
+  }).length;
+  const total = formFields().filter((el) => el.type !== 'hidden').length;
   const meta = getCloudMeta();
   const cloudBit = meta && meta.url ? ' · 云端已绑定' : ' · 尚未绑定云端';
-  document.getElementById('progress').textContent = `已填字段约 ${filled} · 本机页标记 ${done}/6${cloudBit}`;
+  document.getElementById('progress').textContent = `已填约 ${filled}/${total} 项${cloudBit}`;
 }
 
 async function fetchCloud(urlOrCode) {
@@ -364,28 +912,14 @@ async function fetchCloud(urlOrCode) {
   if (!res.ok) throw new Error('读取失败 HTTP ' + res.status + '（' + ref.provider + '）');
   const text = await res.text();
   let data;
-  try {
-    data = JSON.parse(text);
-  } catch (e) {
-    throw new Error('云端内容不是有效 JSON');
-  }
+  try { data = JSON.parse(text); } catch (e) { throw new Error('云端内容不是有效 JSON'); }
   applyDataToForm(data);
-  const payload = {
-    url: ref.url,
-    raw: ref.raw,
-    provider: ref.provider,
-    id: ref.id,
-    at: new Date().toISOString(),
-    from: 'load',
-  };
+  const payload = { url: ref.url, raw: ref.raw, provider: ref.provider, id: ref.id, at: new Date().toISOString(), from: 'load' };
   localStorage.setItem(CLOUD_KEY, JSON.stringify(payload));
   setCloudUrlInPage(ref);
   const hint = document.getElementById('cloudHint');
-  if (hint) {
-    hint.textContent =
-      '已从云端加载（' + ref.provider + '）· ' + new Date(payload.at).toLocaleString() + ' · ' + ref.url;
-  }
-  setStatus('已从云端加载最新数据', '');
+  if (hint) hint.textContent = '已从云端加载（' + ref.provider + '）· ' + new Date(payload.at).toLocaleString() + ' · ' + ref.url;
+  setStatus('已从云端加载最新数据', 'ok');
   return data;
 }
 
@@ -393,7 +927,7 @@ async function postBytebin(body) {
   const res = await fetch('https://bytebin.lucko.me/post', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body,
+    body
   });
   if (!res.ok) {
     const t = await res.text();
@@ -408,7 +942,7 @@ async function postPasteRs(body) {
   const res = await fetch('https://paste.rs', {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-    body,
+    body
   });
   if (!res.ok) {
     const t = await res.text();
@@ -421,43 +955,28 @@ async function postPasteRs(body) {
 
 async function submitCloud() {
   const btn = document.getElementById('cloudSubmit');
+  const btn2 = document.getElementById('cloudSubmitBottom');
   const err = document.getElementById('cloudErr');
   if (err) err.hidden = true;
-  btn.disabled = true;
-  const old = btn.textContent;
-  btn.textContent = '正在保存到云端…';
+  [btn, btn2].forEach((b) => { if (b) b.disabled = true; });
+  const old = btn ? btn.textContent : '';
+  if (btn) btn.textContent = '正在保存到云端…';
+  if (btn2) btn2.textContent = '正在保存…';
   setStatus('上传中…', 'warn');
   const errors = [];
   try {
     const data = collectAll();
     data._cloudSavedAt = new Date().toISOString();
     const body = JSON.stringify(data, null, 2);
-
     let ref = null;
-    // Primary: bytebin (CORS OK, large payload, not blocked)
     try {
       ref = await postBytebin(body);
     } catch (e) {
       errors.push(String(e.message || e));
-      // Fallback: paste.rs
-      try {
-        ref = await postPasteRs(body);
-      } catch (e2) {
-        errors.push(String(e2.message || e2));
-      }
+      try { ref = await postPasteRs(body); } catch (e2) { errors.push(String(e2.message || e2)); }
     }
-    if (!ref) {
-      throw new Error(errors.join(' | ') || '所有云端通道失败');
-    }
-
-    const payload = {
-      url: ref.url,
-      raw: ref.raw,
-      provider: ref.provider,
-      id: ref.id,
-      at: new Date().toISOString(),
-      from: 'save',
-    };
+    if (!ref) throw new Error(errors.join(' | ') || '所有云端通道失败');
+    const payload = { url: ref.url, raw: ref.raw, provider: ref.provider, id: ref.id, at: new Date().toISOString(), from: 'save' };
     localStorage.setItem(CLOUD_KEY, JSON.stringify(payload));
     const local = store();
     local._cloudUrl = payload.url;
@@ -469,39 +988,28 @@ async function submitCloud() {
     if (box) box.hidden = false;
     const hint = document.getElementById('cloudHint');
     if (hint) {
-      hint.textContent =
-        '保存时间：' +
-        new Date(payload.at).toLocaleString() +
-        ' · 通道：' +
-        ref.provider +
-        ' · 刷新本页会自动拉取 · ' +
-        ref.url;
+      hint.textContent = '保存时间：' + new Date(payload.at).toLocaleString() + ' · 通道：' + ref.provider + ' · 刷新会自动拉取 · ' + ref.url;
     }
-    setStatus('已保存到云端（' + ref.provider + '）', '');
+    setStatus('已保存到云端（' + ref.provider + '）', 'ok');
     try {
       await navigator.clipboard.writeText(ref.url);
       const c = document.getElementById('copyCloud');
       if (c) c.textContent = '已复制';
     } catch (e) {}
-    ['G0', 'P1', 'P2', 'P3', 'P4', 'P5'].forEach((pid) => {
-      const s = document.getElementById('saved-' + pid);
-      if (s) s.textContent = '已提交云端 ' + new Date().toLocaleString();
-    });
+    updateProgress();
     return ref.url;
   } catch (e) {
     const msg = e && e.message ? e.message : String(e);
     if (err) {
       err.hidden = false;
-      err.textContent =
-        '云端保存失败：' +
-        msg +
-        '。已保留本机草稿。可稍后重试，或点「导出 JSON 备份」把文件发到对话。';
+      err.textContent = '云端保存失败：' + msg + '。已保留本机草稿。可稍后重试，或点「导出 JSON 备份」。';
     }
     setStatus('云端保存失败', 'err');
     throw e;
   } finally {
-    btn.disabled = false;
-    btn.textContent = old;
+    [btn, btn2].forEach((b) => { if (b) b.disabled = false; });
+    if (btn) btn.textContent = old || '☁ 保存并提交云端';
+    if (btn2) btn2.textContent = '☁ 保存并提交云端';
   }
 }
 
@@ -519,49 +1027,28 @@ function resolveInitialCloudUrl() {
   return '';
 }
 
+function exportJson() {
+  const data = collectAll();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'bj2-simple-questionnaire-' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click();
+}
+
 async function boot() {
-  document.querySelectorAll('.tab').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.tab)));
-  document.querySelectorAll('[data-save-cloud]').forEach((b) =>
-    b.addEventListener('click', async () => {
-      const pid = b.getAttribute('data-save-cloud');
-      try {
-        await submitCloud();
-        const s = document.getElementById('saved-' + pid);
-        if (s) s.textContent = '本页已随全集提交云端 ' + new Date().toLocaleString();
-      } catch (e) {}
-    })
-  );
-  document.querySelectorAll('input,select,textarea').forEach((el) =>
+  formFields().forEach((el) => {
     el.addEventListener('change', () => {
-      if (!el.name || el.id === 'cloudLinkInput' || el.id === 'cloudUrl') return;
       const data = store();
-      data[el.name] = el.value;
+      if (el.type === 'checkbox') data[el.name] = el.checked ? (el.value || '1') : '';
+      else data[el.name] = el.value;
       saveStore(data);
       updateProgress();
-    })
-  );
+    });
+  });
 
-  document.getElementById('exportAll').onclick = () => {
-    const data = collectAll();
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'hos-family-questionnaire-' + new Date().toISOString().slice(0, 10) + '.json';
-    a.click();
-  };
-  document.getElementById('exportCsv').onclick = () => {
-    const data = collectAll();
-    const rows = [['key', 'value']];
-    Object.keys(data)
-      .sort()
-      .forEach((k) => rows.push([k, String(data[k]).replaceAll('\n', ' ')]));
-    const csv = rows.map((r) => r.map((c) => `"${String(c).replaceAll('"', '""')}"`).join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'hos-family-questionnaire.csv';
-    a.click();
-  };
+  document.getElementById('exportAll').onclick = exportJson;
+  document.getElementById('exportAllBottom').onclick = exportJson;
   document.getElementById('clearAll').onclick = () => {
     if (confirm('确定清空本机草稿？不会删除云端已提交内容。')) {
       localStorage.removeItem(KEY);
@@ -569,6 +1056,7 @@ async function boot() {
     }
   };
   document.getElementById('cloudSubmit').onclick = () => submitCloud().catch(() => {});
+  document.getElementById('cloudSubmitBottom').onclick = () => submitCloud().catch(() => {});
   document.getElementById('cloudReload').onclick = async () => {
     const url = document.getElementById('cloudLinkInput').value || resolveInitialCloudUrl();
     try {
@@ -602,24 +1090,12 @@ async function boot() {
     } catch (e) {
       setStatus('云端暂不可用，已载入本机草稿', 'warn');
       applyDataToForm(store());
-      const roles = { P1: '父亲', P2: '母亲', P3: '本人', P4: '姐姐', P5: '弟弟' };
-      for (const [k, v] of Object.entries(roles)) {
-        const el = document.querySelector(`[name="${k}_A1"]`);
-        if (el && !el.value) el.value = v;
-      }
     }
   } else {
     applyDataToForm(store());
-    const roles = { P1: '父亲', P2: '母亲', P3: '本人', P4: '姐姐', P5: '弟弟' };
-    for (const [k, v] of Object.entries(roles)) {
-      const el = document.querySelector(`[name="${k}_A1"]`);
-      if (el && !el.value) el.value = v;
-    }
     setStatus('尚未提交云端：点「保存并提交云端」', 'warn');
   }
-
   updateProgress();
-  showTab((location.hash || '#G0').replace(/^#/, '') || 'G0');
 }
 
 boot();
