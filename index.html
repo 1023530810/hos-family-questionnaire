@@ -324,7 +324,7 @@ footer {
 <header>
   <div class="badge">白居二 2025 · 家庭简问卷</div>
   <h1>买第二市场资助楼：家庭情况问卷</h1>
-  <p>只问下一步需要的资料（钱、谁住、地区、每人一句话）。约 5–10 分钟。</p>
+  <p>简版 + <strong>H 按揭精算</strong>（父母年龄/收入/债务/成数）。约 10–15 分钟。</p>
   <p><strong>保存 = 提交云端</strong>。刷新会自动从云端加载。请勿填密码或完整身份证号。</p>
 </header>
 
@@ -364,6 +364,7 @@ footer {
     <a href="#sec-c">C 钱</a>
     <a href="#sec-d">D 想住哪</a>
     <a href="#sec-e">E 每人情况</a>
+    <a href="#sec-h">H 按揭精算</a>
     <a href="#sec-f">F 担心</a>
     <a href="#sec-g">G 其他</a>
   </nav>
@@ -711,6 +712,164 @@ footer {
     </div>
   </section>
 
+  <section class="section" id="sec-h">
+    <h2><span class="tag">H</span> 按揭精算资料（精确测算用）</h2>
+    <p class="note">银行批核要看：借款人年龄、收入证明、现有债务、首期是否现金、想贷多久。下面尽量填准（大约也行，但数字越准越好）。业主建议仍是父母。</p>
+
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="H_father_age">父亲周岁（约）
+          <span class="hint">影响最长可贷年期（常见：年龄+年期 ≤ 65 或 70，视银行）</span>
+        </label>
+        <input type="number" id="H_father_age" name="H_father_age" min="18" max="90" step="1" placeholder="例如 55"/>
+      </div>
+      <div class="field">
+        <label class="lab" for="H_mother_age">母亲周岁（约）</label>
+        <input type="number" id="H_mother_age" name="H_mother_age" min="18" max="90" step="1" placeholder="例如 52"/>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="H_father_income">父亲每月固定收入（港元）
+          <span class="hint">粮单/强积金可核对的「稳定收入」；不要写一次性奖金为主</span>
+        </label>
+        <input type="number" id="H_father_income" name="H_father_income" min="0" step="100" placeholder="例如 25000"/>
+      </div>
+      <div class="field">
+        <label class="lab" for="H_mother_income">母亲每月固定收入（港元）</label>
+        <input type="number" id="H_mother_income" name="H_mother_income" min="0" step="100" placeholder="例如 20000"/>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lab" for="H_income_proof">收入证明大概有哪些？（可多选意思，用逗号写也行）
+        <span class="hint">例如：近 3 个月粮单、税单、强积金、银行入账</span>
+      </label>
+      <input type="text" id="H_income_proof" name="H_income_proof" placeholder="例：父母都有粮单+强积金"/>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="H_debt_monthly">全家现有贷款月供合计（港元）
+          <span class="hint">信用卡最低还款、私人贷、车贷、其他按揭等；没有填 0</span>
+        </label>
+        <input type="number" id="H_debt_monthly" name="H_debt_monthly" min="0" step="100" placeholder="0"/>
+      </div>
+      <div class="field">
+        <label class="lab" for="H_debt_total">现有贷款大约还欠多少总额（港元）
+          <span class="hint">没有填 0</span>
+        </label>
+        <input type="number" id="H_debt_total" name="H_debt_total" min="0" step="1000" placeholder="0"/>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="H_credit">父母信贷纪录（自评）</label>
+        <select id="H_credit" name="H_credit">
+          <option value="">— 请选择 —</option>
+          <option value="正常无逾期">正常，无逾期</option>
+          <option value="偶有逾期已还清">偶有逾期，已还清</option>
+          <option value="现有逾期">现有逾期</option>
+          <option value="曾破产或IVA">曾破产 / 个人自愿安排</option>
+          <option value="不清楚">不清楚</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="lab" for="H_borrowers">计划谁做按揭借款人</label>
+        <select id="H_borrowers" name="H_borrowers">
+          <option value="">— 请选择 —</option>
+          <option value="父母联名">父母联名</option>
+          <option value="仅父亲">仅父亲</option>
+          <option value="仅母亲">仅母亲</option>
+          <option value="父母+一名子女">父母 + 一名子女</option>
+          <option value="未定">未定，需要建议</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="H_down_cash">首期 30 万是已经准备好的现金吗？</label>
+        <select id="H_down_cash" name="H_down_cash">
+          <option value="">— 请选择 —</option>
+          <option value="已是现金在银行">已是现金，在银行账户</option>
+          <option value="大部分已备还差一点">大部分已备，还差一点</option>
+          <option value="还要变卖或借款凑">还要变卖资产/向亲友借</option>
+          <option value="还没落实">还没落实</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="lab" for="H_extra_cash">首期之外，还能再拿多少应急/律师税装修（万港元）
+          <span class="hint">白居二还有律师费、印花税、装修；建议另留缓冲</span>
+        </label>
+        <input type="number" id="H_extra_cash" name="H_extra_cash" min="0" step="1" placeholder="例如 10"/>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="H_price_target">目标楼价（万港元）
+          <span class="hint">想精算就填一个数；可与 C 节 350 不同，以这里为准</span>
+        </label>
+        <input type="number" id="H_price_target" name="H_price_target" min="50" max="2000" step="1" placeholder="例如 300"/>
+      </div>
+      <div class="field">
+        <label class="lab" for="H_ltv">希望借几成（按揭成数）
+          <span class="hint">白表第二市场常见最高约九成（以银行+保证计划为准）</span>
+        </label>
+        <select id="H_ltv" name="H_ltv">
+          <option value="">— 请选择 —</option>
+          <option value="90">约九成（自己约一成首期）</option>
+          <option value="80">约八成</option>
+          <option value="70">约七成或以下</option>
+          <option value="max">能批多少算多少</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label class="lab" for="H_tenure">希望供多少年</label>
+        <select id="H_tenure" name="H_tenure">
+          <option value="">— 请选择 —</option>
+          <option value="30">30 年（若年龄允许）</option>
+          <option value="25">25 年</option>
+          <option value="20">20 年</option>
+          <option value="15">15 年</option>
+          <option value="bank">按银行给的最长</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="lab" for="H_rate_pref">利率偏好（不懂可选「随便」）</label>
+        <select id="H_rate_pref" name="H_rate_pref">
+          <option value="">— 请选择 —</option>
+          <option value="float">浮息（随市场变）</option>
+          <option value="fixed_period">希望有一段固定息</option>
+          <option value="any">随便，以批核/月供低为主</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lab" for="H_bank_talk">有没有问过银行/按揭中介？对方怎么说？
+        <span class="hint">没有就写「未问」</span>
+      </label>
+      <textarea id="H_bank_talk" name="H_bank_talk" rows="2" placeholder="例：未问 / 汇丰说最多九成 / 中介说月入要…">未问</textarea>
+    </div>
+
+    <div class="field">
+      <label class="lab" for="H_stress">若利率上升，月供多 2000–3000 元能否接受？</label>
+      <select id="H_stress" name="H_stress">
+        <option value="">— 请选择 —</option>
+        <option value="能">能接受</option>
+        <option value="勉强">勉强</option>
+        <option value="不能">不能，必须锁死月供</option>
+      </select>
+    </div>
+  </section>
+
   <!-- F -->
   <section class="section" id="sec-f">
     <h2><span class="tag">F</span> 最担心什么（可多选）</h2>
@@ -759,7 +918,7 @@ footer {
 
 <footer>
   隐私：数据提交到 bytebin.lucko.me（主通道；失败自动改 paste.rs）。链接知悉者可读。<br/>
-  旧版复杂问卷已归档在 docs/10-questionnaire/archive/v1-complex/。版本 simple-v1 · 2026-07-15
+  旧版复杂问卷已归档在 docs/10-questionnaire/archive/v1-complex/。版本 simple-v1.1 · 含 H 按揭精算 · 2026-07-15
 </footer>
 
 <script>
@@ -855,7 +1014,7 @@ function collectAll() {
   data._exportedAt = new Date().toISOString();
   data._meta = {
     purpose: '白居二第二市场下一步建议',
-    version: 'simple-v1',
+    version: 'simple-v1.1-mortgage',
     family: '5人:父/母/本人/姐/弟',
     known: {
       plan: '白居二2025',
